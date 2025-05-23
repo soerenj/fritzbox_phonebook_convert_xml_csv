@@ -1,45 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Convert Fritzbox Phonebook Telefonbuch | webservice online</title>
+<title>Convert Fritzbox Phonebook Telefonbuch xml ↔ csv | webservice online</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name=”name” content=”title” lang="en" content="Convert Fritzbox Phonebook | webservice" />
 <meta name=”name” content=”title” lang="de" content=">Umwandlung Fritzbox Telefonbuch | web-dienst" />
-<meta name=”name” content=”description” lang="en" content="Online converter for phonebook files from router Fritzbox .xml : between .xml ↔ to / from .csv  ; or .xml ↔ to / from .vcf (vcard) and backwards" />
-<meta name=”name” content=”description” lang="de" content="Online konvertierung umwandlung vom Telefonbuch der Fritzbox (.xml Datei) : zwischn.xml ↔ von / nach .csv  ; oder  .xml ↔ von / nach .vcf (vcard) und zurück." />
+<meta name=”name” content=”description” lang="en" content="Online converter for phonebook files from router Fritzbox .xml : between .xml ↔ to / from .csv and backwards" />
+<meta name=”name” content=”description” lang="de" content="Online konvertierung umwandlung vom Telefonbuch der Fritzbox (.xml Datei) : zwischen .xml ↔ von / nach .csv  und zurück." />
 <meta property="og:title" lang="en" content="Convert Fritzbox Phonebook | webservice" />
 <meta property="og:title" lang="de" content="Umwandlung Fritzbox Telefonbuch | web-dienst" />
-<meta name=”name” content=”og:description” lang="en" content="Online converter for phonebook files from router Fritzbox .xml : between .xml ↔ to / from .csv  ; or .xml ↔ to / from .vcf (vcard) and backwards" />
-<meta name=”name” content=”og:description” lang="de" content="Online konvertierung umwandlung vom Telefonbuch der Fritzbox (.xml Datei) : zwischn.xml ↔ von / nach .csv  ; oder  .xml ↔ von / nach .vcf (vcard) und zurück." />
+<meta name=”name” content=”og:description” lang="en" content="Online converter for phonebook files from router Fritzbox .xml : between .xml ↔ to / from .csv backwards" />
+<meta name=”name” content=”og:description” lang="de" content="Online konvertierung umwandlung vom Telefonbuch der Fritzbox (.xml Datei) : zwischen .xml ↔ von / nach .csv und zurück." />
 <meta property="og:type" content="webapp" />
+<!--
 <link rel="icon" href="img/icon_convert_formats.png" sizes="141x96" />
 <link rel="apple-touch-icon" href="img/icon_convert_formats.png" sizes="141x96" />
-<meta property="og:url" lang="de" content="https://soerenj.codeberg.page/fritzbox_phonebook_convert_xml_csv_vcf/fritzbox_phonebook_convert.html#de" />
-<meta property="og:url" lang="en" content="https://soerenj.codeberg.page/fritzbox_phonebook_convert_xml_csv_vcf/fritzbox_phonebook_convert.html#en" />
-<link rel="canonical" href="https://soerenj.codeberg.page/fritzbox_phonebook_convert_xml_csv_vcf/fritzbox_phonebook_convert.html" />
-<link rel="alternate" href="/fritzbox_phonebook_convert_xml_csv_vcf/fritzbox_phonebook_convert.html#en" lang="en" />
-<link rel="alternate" href="/fritzbox_phonebook_convert_xml_csv_vcf/fritzbox_phonebook_convert.html#de" lang="de" />
+-->
+<meta property="og:url" lang="de" content="https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html#de" />
+<meta property="og:url" lang="en" content="https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html#en" />
+<link rel="canonical" href="https://soerenj.codeberg.page/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html" />
+<link rel="alternate" href="https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html#en" lang="en" hreflang="en" />
+<link rel="alternate" href="https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html#de" lang="de" hreflang="de" />
+<!-- "image": "https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/img/icon_convert_formats.png", -->
 <script type='application/ld+json'>
 {
 	"@context": "http://schema.org/",
 	"@type": "WebApplication",
+	"@id": "https://soerenj.codeberg.page/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html",
+	"author":[{"@context":"https://schema.org", "@type":"Person", "name:":"soerenj", "url":"https://codeberg.org/soerenj/","url":"https://github.com/soerenj/"}],
 	"applicationCategory": "UtilitiesApplication",
 	"applicationSubCategory": "convert",
-	"image": "https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv_vcf/img/icon_convert_formats.png",
 	"isAccessibleForFree": "true",
-	"license": "AGPL",
+	"license": "https://www.gnu.org/licenses/agpl-3.0.txt",
 	"name": "convert phonebook Fritzbox",
-	"description": "convert phonebook files from router Fritzbox .xml to .csv or to .vcf (vcard)",
-	"mainEntityOfPage":"https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv_vcf/",
-	"url":"https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv_vcf/",
-	"SoftwareSourceCode": "https://github.com/soerenj/fritzbox_phonebook_convert_xml_csv_vcf",
+	"description": "convert phonebook files from router Fritzbox .xml to .csv and backwards",
 	"programmingLanguage": "javascript",
 	"dateModified": "2025-05-23",
-	"softwareVersion": "0.281",
+	"softwareVersion": "0.30",
 	"inLanguage": ["en", "de"],
-	"sameAs": "https://soerenj.codeberg.page/fritzbox_phonebook_convert_xml_csv_vcf/fritzbox_phonebook_convert.html"
+    "mainEntityOfPage":"https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html",
+	"url":"https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html",
+	"SoftwareSourceCode": "https://codeberg.org/soerenj/fritzbox_phonebook_convert_xml_csv/",
+	"isBasedOn": "https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv_vcf/fritzbox_phonebook_convert.html",
+	"sameAs": "https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html"
 }
 </script>
 <style>  input{ cursor: pointer } .advanced_view{ display:none; } textarea{ min-width:500pt;width:80%;height:100pt;} @media (min-height:800pt){ textarea{ height:200pt;} } details summary { color:LinkText;} details summary:hover, details summary :hover, a .en:hover, a .de :hover{ text-decoration:underline; cursor:pointer; color:#000; } details div { margin-left: 12pt; }
@@ -48,7 +53,7 @@
 <body>
 <!--
  /*
- * version: 0.281
+ * version: 0.30
  * date: 2025-05-23
  *
  * Licence 
@@ -63,12 +68,12 @@
  */
   -->
 <header>
-<img src="img/icon_convert_formats.png" style="float:left;padding:6pt;" />
+<!--<img src="img/icon_convert_formats.png" style="float:left;padding:6pt;" />-->
 <span style="float:right"><a href="#en" onClick="changeLanguage('en')" alt="en" hreflang="en" title="change language to english">&#127468&#127463</a> <a href="#de" onClick="changeLanguage('de')" hreflang="de" alt="de" title="wechsel die Sprache zu deutsch / german">&#127465&#127466</a></span>
 <h1 lang="en" class="en">Phonebook Contact convert for Fritzbox</h1>
 <h1 lang="de" class="de">Telefonbuch Kontakte konvertieren für Fritzbox</h1>
-<p lang="en" class="en">Converts Fritzbox-XML-Files to/from .CSV or .VCF(vcard)-File with Phone Numbers.</p>
-<p lang="de" class="de">Konvertiert Fritzbox-XML-Dateien zu/von .CSV oder .VCF(vcard)-Dateien mit Telefonnummer</p>
+<p lang="en" class="en">Converts Fritzbox-XML-Files to/from .CSV-File with Phone Numbers.</p>
+<p lang="de" class="de">Konvertiert Fritzbox-XML-Dateien zu/von .CSV-Dateien mit Telefonnummer</p>
 <span style="clear:both"></span><br>
 </header>
 <noscript style="color:red">You need JavaScript, to use this service.</noscript>
@@ -77,7 +82,7 @@
 <span lang="en" class="en">Select &nbsp;- or -&nbsp; drag & drop file(s): </span>
 <span lang="de" class="de">Auswählen &nbsp;- oder -&nbsp; hier reinziehen von Datei(en) <span style="color:#999;">("drag & drop")</span>:</span>
 <br />
-<span style="color:#999999"><i><span lang="en" class="en">Allowed</span><span lang="de" class="de">Erlaubt</span>: Fritzbox .xml , .csv , .vc , .vcard</i></span><br>
+<span style="color:#999999"><i><span lang="en" class="en">Allowed</span><span lang="de" class="de">Erlaubt</span>: Fritzbox .xml , .csv</i></span><br>
 <span id="file-input_auto-detect_text_drophere" style="display:none">Drop your file here</span>
 <input type="file" multiple id="file-input_auto-detect" autocomplete="off" /><a href="#" id="file-input_auto-detect_close_button" style="display:none;background: white;  font-size: 2em;  text-align: right;  top: 10%;  position: absolute;  padding: 0.5em;  right: 10%; border-radius:20pt;" onClick="unhighlight();return false;">Close X</a><br>
 </div><br>
@@ -110,20 +115,11 @@
  <span lang="en" class="en">Ready. Check now your download folder</span>
  <span lang="de" class="de">Fertig. Überprüfen Sie Ihren Download-Ordner</span>
 </div>
-<div id="ready_note_export_to_vcf_multivcard" style="margin-top:5pt;display:none;margin-left: 50pt;background: #ddd;padding: 10pt;border-radius: 5pt;">
- <span lang="en" class="en">Please Note: This is a Multi-Vcard file. It have all Contacts in one File. Some Programs does not support this. <br>Split: If you need a vcard-file per each Person: <a href="#" onclick="convert_to_vcf(true);return false;">Split in <span id="ready_note_export_to_vcf_multivcard__counter_splited1">X</span> seperated files<a/>.<br> Alternativ: please try this other tool: <a href="https://blog.rillke.com/fritzXML2vcard/">https://blog.rillke.com/fritzXML2vcard/</a></span>
- <span lang="de" class="de">Bitte beachten Sie: Die ist eine Multi-Vcard Datei. Sie enthält alle Kontakte in einer Datei. Manche Programme unterstützen dies nicht. <br>Aufteilen: Wenn sie jedoch je Person eine einzelne Vcard-Datei benötigen: <a href="#" onclick="convert_to_vcf(true);return false;">Aufteilen in <span id="ready_note_export_to_vcf_multivcard__counter_splited2">X</span> verschiedene Dateien<a/>.<br> Alternativ: Bitte eine anderes Tool verwenden: z.B.: <a href="https://blog.rillke.com/fritzXML2vcard/">https://blog.rillke.com/fritzXML2vcard/</a></span>
-</div>
-<div id="ready_note_export_to_vcf_allversions" style="margin-top:5pt;display:none;margin-left: 50pt;background: #ddd;padding: 10pt;border-radius: 5pt;">
- <span lang="en" class="en">Please Note: There was three files created. There have different vcard Version (v2.1 , v3.0 , v4.0). Which file you need may depends on your target.</span>
- <span lang="de" class="de">Bitte beachten Sie: Es wurden drei Dateien erstellt. Es sind verschiedene vcard Versionen (v2.1 , v3.0 , v4.0). Welche Datei Sie benötigen, kommt auf ihr Ziel-Programm an.</span>
-</div>
 
 <!-- ↓↑ ⇓⇑ ⇩⇧ ⟱ ⟰ ⬆⬇ -->
 <br>
 <div class="advanced_view">
  <input type="button" value="convert: ⬇ xml to csv" onclick="convert_to_csv()" />  &nbsp;
- <input type="button" value="convert: ⬇ xml to vcf (vcard)" onclick="convert_to_vcf()" />  &nbsp;
  <input type="button" value="Download" title="Download one file" onclick="download_one_file_ask()" />   &nbsp; 
  <input type="button" value="✖ Reset to Test-Values" title="reset to default" onclick="reset_to_default()" />   &nbsp;  
 </div>
@@ -141,25 +137,6 @@
 "Person E", "00494933333", "home", "", "test@example.com"
 </textarea>
 <br>
-</div>
-
-<div id="select_file_vcf_div" class="advanced_view">
-<label for="phonebook_vcf">From .VCF File:</label> <input type="button" value="convert: ⇧ vcf to xml" onclick="convert_vcf_to_xml()" />   &nbsp;  <br>
-<textarea id="phonebook_vcf" autocomplete="off">BEGIN:VCARD
-VERSION:4.0
-N:Person E
-FN:Person E
-TEL;TYPE=WORK;VOICE:090123456789
-END:VCARD
-BEGIN:VCARD
-VERSION:2.1
-N:Person=20F
-FN:Person=20F
-TEL;VOICE:+4990987654321
-NOTE:importantContact(fritzbox)
-END:VCARD
-
-</textarea>
 </div>
 
 <p id="show_advanced_view_link_link_close" style="display:none">
@@ -192,14 +169,14 @@ END:VCARD
     </legend>
     <input type="checkbox" onChange="var e=document.getElementById('file-input_auto-detect');if(!this.checked) e.accept=''; else e.accept=file_upload__accepted_filetype;" id="setting__upload__filetype_only_accepted" checked autocomplete="off">
     <label for="setting__upload__filetype_only_accepted">
-      <span lang="en" class="en">Show only supported files (.xml / .csv / .vcf / ~) <span style="color:#999">( only these are selectable in file upload window/dialog in browser )</span></span>
-      <span lang="de" class="de">Zeige nur unterstützte Dateien (.xml / .csv / .vcf / ~) an <span style="color:#999">( nur diese sind auswählbar im Datei-auswählen Fenster im Browser )</span></span>
+      <span lang="en" class="en">Show only supported files (.xml / .csv / ~ ) <span style="color:#999">( only these are selectable in file upload window/dialog in browser )</span></span>
+      <span lang="de" class="de">Zeige nur unterstützte Dateien (.xml / .csv / ~) an <span style="color:#999">( nur diese sind auswählbar im Datei-auswählen Fenster im Browser )</span></span>
     </label> <br />
     <input type="checkbox" id="setting__upload__filetype_auto_detect" checked autocomplete="off">
     <label for="setting__upload__filetype_auto_detect">
       <span lang="en" class="en">Automatic detection of file-type</span>
       <span lang="de" class="de">Automatisch Datei-Type feststellen</span>
-    </label> <span style="color:#999">(detected by file-extension .xml / .csv / .vcf /.vcard /or MIME-Type ; Otherwise you will be ask)</span>
+    </label> <span style="color:#999">(detected by file-extension .xml / .csv / or MIME-Type ; Otherwise you will be ask)</span>
   </fieldset>
   <fieldset ><legend>* to xml (=import to fritzbox)</legend>
     <!--<span lang="en" class="en">Phone-Number edits:</span>
@@ -292,75 +269,6 @@ END:VCARD
     <span lang="de" class="de">Beispiel: beim Gerät <em>Fritzbox 7390</em>: Bei diesen Gerät sind normalerweise maximal 9 Telefon-Nummer in jeden Eintrag möglich. Es ist scheinbar trotzdem möglich Telefonbücher mit mehr Telefon-Nummern je Eintrag, zu importieren. Es kommt dann aber zu Problemen oder Fehlern: Die letzten Telefon-Nummern (>9) sind dann nicht mehr löschbar, aber noch bearbeitet-bar. (Möglicherweise andere Probleme möglich.) Meine Empfehlung: Besser bei 9 Telefon-Nummern aufteilen - oder - selber testen wie viele Telefon-Nummern je Eintrag ihre Gerät erlaubt (im der Benutzeroberfläche ( Web-Interface auf fritz.box ) )</span>
     </span></div></p>
   </fieldset>
-  <fieldset ><legend>xml to .vcf (=export from fritzbox)</legend>
-    <p style="margin: 0pt;">
-    <script language="javascript">
-    function settings_ui_toggleVcfAllV(show){
-      document.getElementById('set_vcf_only_for2.1').style.display='block';
-      if(show){
-        document.getElementById('setting__xml2vcf__version__container').style.display='none';
-        if(show_advanced_view__state) var e=document.getElementsByClassName('no_for_textfields');
-      }else{
-        document.getElementById('setting__xml2vcf__version__container').style.display='block'; if(document.getElementById('setting__xml2vcf__version').value!='2.1') document.getElementById('set_vcf_only_for2.1').style.display='none';
-      }
-    }
-    </script>
-    <input type="checkbox" id="setting__xml2vcf__allversions" autocomplete="off" checked onChange="settings_ui_toggleVcfAllV(this.checked)"/>
-    <label for="setting__xml2vcf__allversions">
-      <span lang="en" class="en">Convert to all VCard-Versions at the same time (=you get three files)<!-- <span style="color:#999">(only for uploaded files. That means: not for the Textarea / <em>text source window<em> view)</span>--></span>
-      <span lang="de" class="de">Konvertiere in alle VCard-Versionen gleichzeitig (=Sie erhalten drei verschiedene Dateien)<!--<span style="color:#999">(nur für hochgeladene Dateien. Also nicht für die Textarea / <em>Text-Fenster</em> Ansicht)</span>--></span>
-    </label><br/>
-    <span id="setting__xml2vcf__version__container" style="display:none;">
-    <label for="setting__xml2vcf__version">VCard Version:</label>
-    <select name="setting__xml2vcf__version" id="setting__xml2vcf__version" autocomplete="off" onChange="if(this.value=='2.1')document.getElementById('set_vcf_only_for2.1').style.display='block';else document.getElementById('set_vcf_only_for2.1').style.display='none';">
-      <option value="2.1" selected>v2.1</option>
-      <option value="3.0">v3.0</option>
-      <option value="4.0">v4.0</option>
-    </select>
-    </span>
-    <fieldset id="set_vcf_only_for2.1" style="display:block">
-    <legend>
-      <span lang="en" class="en">Improve data of file-version v2.1: (no changes needed here)</span>
-      <span lang="de" class="de">Verbessere die Daten von Datei-Version v2.1: (keine Änderungen nötig)</span>
-    </legend>
-    <input type="checkbox" id="setting__xml2vcf__uri_encode" autocomplete="off" checked />
-    <label for="setting__xml2vcf__uri_encode">
-      <span lang="en" class="en">URI-Encoding for name, email. (maybe helpfull for Special Characters, <em>German: Umlauten</em>, empty spaces)</span>
-      <span lang="de" class="de">URI-Encoding für Name, Email. (hilf evtl. bei Sonderzeichen, Umlauten, Leerzeichen)</span>
-    </label><br/>
-    <input type="checkbox" id="setting__xml2vcf__add_charset" autocomplete="off" checked />
-    <label for="setting__xml2vcf__add_charset">
-      <span lang="en" class="en">Add to String charset:UTF-8</span>
-      <span lang="de" class="de">Füge den Zeichensatz (EN:"Charset") zum Text hinzu</span>
-    </label>
-    </fieldset>
-    <span lang="en" class="en">Export addational data: </span>
-    <span lang="de" class="de">Exportiere diese weiteren Felder: </span>
-    <input type="checkbox" id="setting__xml2vcf__also_phonetype" checked autocomplete="off" />
-    <label for="setting__xml2vcf__also_phonetype">
-      <span lang="en" class="en">phone-type (mobile,work,...)</span>
-      <span lang="de" class="de">Telefon-Type (mobile,work,...)</span>
-    </label> &nbsp;
-    <input type="checkbox" id="setting__xml2vcf__also_prio" checked autocomplete="off" />
-    <label for="setting__xml2vcf__also_prio">
-      <span lang="en" class="en">marked Note for important Person (=just a note)</span>
-      <span lang="de" class="de">markierung als wichtige Person(nur eine notiz)</span>
-    </label> &nbsp;
-    <input type="checkbox" id="setting__xml2vcf__also_email" checked autocomplete="off" />
-    <label for="setting__xml2vcf__also_prio">
-      <span lang="en" class="en">Email</span>
-      <span lang="de" class="de">Email</span>
-    </label>
-    </p>
-    <span lang="en" class="en">At splited (=seperated) files Export: </span>
-    <span lang="de" class="de">Bei geteilte dateien export: </span>
-    <input type="checkbox" id="setting__xml2vcf__splited__filename_fullname" autocomplete="off" />
-    <label for="setting__xml2vcf__splited__filename_fullname">
-      <span lang="en" class="en">Filename: Full Name</span>
-      <span lang="de" class="de">Dateiname: Ganze Name</span>
-    </label>
-    </p>
-  </fieldset>
   <br />
   <label for="new_phonebook_name">
     <span lang="en" class="en">Name of new Phonebook-Name: </span>
@@ -427,7 +335,7 @@ if(detected_default_langcountrycode!='')e.value=detected_default_langcountrycode
 
 if(document.getElementById('file-input_auto-detect').value!='')document.getElementById('file-input_reset').style.display='block';
 document.getElementById('new_phonebook_name').value=new_phonebook_name;
-var file_upload__accepted_filetype = ".vcf,.xml,.vcard,.csv,text/csv,text/vcard,text/x-vcard,text/directory;profile=vCard,text/directory,application/xml,text/xml";
+var file_upload__accepted_filetype = ".xml,.csv,text/csv,application/xml,text/xml";
 var e =document.getElementById('file-input_auto-detect'); if(e.accept!=undefined)e.accept=file_upload__accepted_filetype
 if(setting__xml2csv__just_one_phonenumer_each==1) document.getElementById('setting__xml2csv__just_one_phonenumer_each_text__single_row').checked=true;
 if(setting__xml2csv__just_one_phonenumer_each==2) document.getElementById('setting__xml2csv__just_one_phonenumer_each_text__multiple_rows').checked=true;
@@ -439,7 +347,6 @@ if(setting__csv2xml__merge_samename==1) document.getElementById('setting__csv2xm
 function reset_to_default(){
  document.getElementById('phonebook_xml').value = document.getElementById('phonebook_xml').defaultValue;
  document.getElementById('phonebook_csv').value = document.getElementById('phonebook_csv').defaultValue;
- document.getElementById('phonebook_vcf').value = document.getElementById('phonebook_vcf').defaultValue;
  document.getElementById('file-input_auto-detect').value='';
  document.getElementById('ready').style.display="none";
 }
@@ -540,257 +447,6 @@ function show_errors(logError){
    document.getElementById('error_logs').value='';
  }
 
-}
-
-function convert_to_vcf__maybe_all(filename){ //=vcard
- var selfcall=true;
- if(document.getElementById('setting__xml2vcf__allversions').checked){
-     document.getElementById('setting__xml2vcf__version').value="4.0";
-     prepare_and_download( convert_to_vcf(), filename );
-     document.getElementById('setting__xml2vcf__version').value="3.0";
-     prepare_and_download( convert_to_vcf(), filename );
-     document.getElementById('setting__xml2vcf__version').value="2.1";
-     document.getElementById('set_vcf_only_for2.1').style.display='block';
-     return convert_to_vcf();
- }else convert_to_vcf();
-}
-
-function convert_to_vcf(multipleDirectDownload=false){ //=vcard
- var v = document.getElementById('setting__xml2vcf__version').value; //v=Version 2.1|3.0|4.0
- var uri_encode = document.getElementById('setting__xml2vcf__uri_encode').checked;
- var add_charset = document.getElementById('setting__xml2vcf__add_charset').checked;
- var export_also_phonetype = document.getElementById('setting__xml2vcf__also_phonetype').checked;
- var export_also_email = document.getElementById('setting__xml2vcf__also_email').checked;
- var export_also_prio = document.getElementById('setting__xml2vcf__also_prio').checked;
- var text = document.getElementById('phonebook_xml').value;
- parser = new DOMParser();
- xmlDoc = parser.parseFromString(text, "text/xml");
-
- var out, outTotal, contacts, contact, person, telephony, telefone_numbers, telefone_numbers_type, telefone_numbers_prio, phone, tmp;
- out = ''; outTotal=''; logError=[];
- var contacts = xmlDoc.getElementsByTagName("contact");
- document.getElementById('ready_note_export_to_vcf_multivcard__counter_splited1').innerText=contacts.length;
- document.getElementById('ready_note_export_to_vcf_multivcard__counter_splited2').innerText=contacts.length;
- if(multipleDirectDownload==true){
-   var text__AskMultipleVcf="It will be created and downloaded lots of files: \ncounted: "+contacts.length+" files.\nDo you want really want continue??";
-   if(selectedLanguage=="de")text__AskMultipleVcf="Es werden gleiche (sehr) vielen Dateien erstellt und runtergeladen: \n"+contacts.length+" Stück. \nMöchten Sie fortfahren?";
-   var text__AskMultipleVcf_name="Filename example (look in settings):\nPerson-Name: Max Muster\nFile-name: ";
-   if(selectedLanguage=="de") text__AskMultipleVcf_name="Dateiname Beispiel (siehe in Einstellungen):\nPerson Name: Max Muster\nDateiname: ";
-   if(!document.getElementById('setting__xml2vcf__splited__filename_fullname').checked) text__AskMultipleVcf_name+="Ma Mu_v2-1__converted_.vcf";
-   var text__AskMultipleVcf_version="";
-   if(document.getElementById('setting__xml2vcf__allversions').checked){
-     text__AskMultipleVcf_version="Export in VCard-Version "+document.getElementById('setting__xml2vcf__version').value;
-     if(selectedLanguage!="de")text__AskMultipleVcf_version+="\nIt is not possible to export in all vcard-version in this step.";
-     if(selectedLanguage=="de")text__AskMultipleVcf_version+="\nEs ist nicht möglich in alle Vcard-Versionen gleichzeitig zu exportieren.";
-   }
-   if(!confirm(text__AskMultipleVcf) || !confirm(text__AskMultipleVcf_name)) return ""; //multipleDirectDownload=false;
-   if(text__AskMultipleVcf_version!='' && !confirm(text__AskMultipleVcf_version)) return "";
- }
- for(i=0;i<contacts.length;i++)
- {
-  //check values
-  if(undefined==contacts[i]){ logError.push(''); continue; }
-  if(
-    (undefined==contacts[i].getElementsByTagName("person")[0]) ||
-    (undefined==contacts[i].getElementsByTagName("person")[0].getElementsByTagName("realName")[0].firstChild.nodeValue) ||
-    (undefined==contacts[i].getElementsByTagName("telephony")[0].getElementsByTagName("number")[0].firstChild.nodeValue)
-  ){ logError.push(contacts[i].innerHTML); continue; }
-
-  out = 'BEGIN:VCARD\n';
-  if(v=="2.1")out += 'VERSION:2.1\n';
-  if(v=="3.0") out += 'VERSION:3.0\n';
-  if(v=="4.0") out += 'VERSION:4.0\n';
-  contact = contacts[i];
-  person  = contact.getElementsByTagName("person")[0].getElementsByTagName("realName")[0].firstChild.nodeValue;
-  telephony = contact.getElementsByTagName("telephony")[0].getElementsByTagName("number");
-  
-  //name
-  tmp = person.replace('\n','');
-  if(uri_encode  && v=="2.1")tmp = encodeURI(tmp).replace(/%/g,'=');
-  if(add_charset && v=="2.1")tmp = ";CHARSET=UTF-8:"+tmp;
-  out += 'N:' +tmp+'\n';
-  out += 'FN:'+tmp+'\n';
-  
-  //phone
-  for(j=0;j<telephony.length;j++){
-   if(null==telephony[j].firstChild || undefined==telephony[j].firstChild.nodeValue || null==telephony[j].firstChild.nodeValue) { logError.push(person); if(telephony[j].firstChild==null)logError.push('empty number:'); logError.push(telephony[j]); continue; }
-   out += "TEL;";
-   phone = myTrimQuotes(telephony[j].firstChild.nodeValue);
-   if(document.getElementById('setting__xml2__phonenumber_edit_your_areacode__active').checked &&
-     !document.getElementById('setting__xml2__phonenumber_edit_your_areacode').validity.patternMismatch ){
-     var areacode__pre_phone='';
-     areacode__pre_phone=document.getElementById('setting__xml2__phonenumber_edit_your_areacode').value;
-     if(areacode__pre_phone.substring(0,1)=="0")areacode__pre_phone=areacode__pre_phone.substring(1);
-     if(phone.substring(0,1)!="0" && areacode__pre_phone!='' && phone.match(/[2-9][0-9][0-9].*?/).length>0)phone="0"+areacode__pre_phone+phone;
-   }
-   if(document.getElementById('setting__xml2__phonenumber_edit_your_countrycode__active').checked &&
-     !document.getElementById('setting__xml2__phonenumber_edit_your_countrycode').validity.patternMismatch ){
-     var countrycode__pre_phone='';
-     countrycode__pre_phone=document.getElementById('setting__xml2__phonenumber_edit_your_countrycode').value;
-     if(phone.length>2 && phone.substring(0,1)!="+" && phone.substring(0,1)=="0" && phone.substring(0,2)!="00" && countrycode__pre_phone!='') phone=""+countrycode__pre_phone+""+phone.substring(1);
-   }
-   //if(v=="2.1" )
-   if( export_also_phonetype && telephony[j].getAttribute('type')!=undefined) out +=      ''+telephony[j].getAttribute('type').toUpperCase()+';';
-   //if(v!="2.1" && export_also_phonetype && telephony[j].getAttribute('type')!=undefined) out += 'TYPE='+telephony[j].getAttribute('type').toUpperCase()+';';
-   out += "VOICE:"+phone+'\n';
-  }
-  if(export_also_prio && telephony.length>0 && telephony[0].getAttribute('prio')!='')out += "NOTE:importantContact(fritzbox)\n";
-  
-  //email
-  if(export_also_email){
-  services = Array();
-  if(undefined==contact.getElementsByTagName("services")) { logError.push(services[j]); continue; }
-  if(contact.getElementsByTagName("services").length>0)services = contact.getElementsByTagName("services")[0].getElementsByTagName("email");
-  for(j=0;j<services.length;j++){
-   if(undefined==services[j].firstChild.nodeValue) { logError.push(services[j]); continue; }
-   tmp = services[j].firstChild.nodeValue;
-   if(uri_encode  && v==2.1)tmp = encodeURI(tmp).replace(/%/g,'=');
-   if(add_charset && v==2.1)tmp = ";CHARSET=UTF-8:"+tmp;
-   out += "EMAIL:"+tmp+'\n';
-  }
-  }
-  
-  out += "END:VCARD\n";
-  if(multipleDirectDownload){
-    var filen=person
-    if(!document.getElementById('setting__xml2vcf__splited__filename_fullname').checked) filen=filen.replace(/([^ \.;,])([^ \.;,])*/g,'$1');
-    prepare_and_download(out,filen);
-  }
-  outTotal+=out;
- }
- document.getElementById('phonebook_vcf').value = outTotal;
- return out;
- //download('vcf',out);
-}
-
-function convert_vcf_to_xml(){
-  //config
- var vcf_use_which_name = 'FN'; // F or FN 
-
- var text = document.getElementById('phonebook_vcf').value;
- var person, email, v;
- var out = '';
- var cantHandleCharset_showMessage=false;
- out += '<?xml version="1.0" encoding="utf-8"?>\n<phonebooks>\n<phonebook owner="" name="'+new_phonebook_name+'">\n';
- var contacts = text.split('BEGIN:VCARD');
- for(i=0;i<contacts.length;i++)
- {
-  if(contacts[i]=='')continue;
-  var c = contacts[i];
-  var elements = contacts[i].split(/\n|\r\n/);
-  var personOut='';
-  var phoneOut = '';
-  var EmailOut='';
-  var typeOut = '';
-  var v = '';
-  var prio=false;
-  
-  for(j=0;j<elements.length;j++){ //handle utf8 hex code
-    if(elements[j].search(/CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:/)>=0){
-        var match = elements[j].match("(.*);(CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE):(.*)");
-        var splited = match[3].split("=");
-        for(var k=0;k<splited.length;k++)
-        {
-          splited[k] = splited[k].replace(/;/g,""); //;;; is (mostly?) only on end of line
-        }
-    
-        var str = '';
-        for(var k=0;k<splited.length;k++){
-        if(splited[k].length==0)continue;
-        if(splited[k].toUpperCase()=='C2' || splited[k].toUpperCase()=='C3')
-        {
-            var hex=splited[k]+splited[k+1];
-            try{
-                str+= decodeURIComponent(hex.replace(/(..)/g,'%$1'))
-            }catch(e){console.log('invalid hex input: ' + hex)}
-            k++;
-            continue;
-        }
-        str+=String.fromCharCode('0x'+splited[k]);
-        }
-   
-        elements[j] = match[1]+':'+str;
-        
-     }
-     else if( elements[j].search(/CHARSET=UTF-8:/)>=0){
-        elements[j] = elements[j].replace(/CHARSET=UTF-8:/,'');
-     }
-     else if( elements[j].search(/CHARSET=/)>=0){
-       if(!cantHandleCharset_showMessage)alert("sorry. Can't handle this charset. Possible some special character are wrong. Or the file is not import-able."); cantHandleCharset_showMessage=true;
-     }
-  }
-  
-  for(j=0;j<elements.length;j++){
-    var str = elements[j];
-    if(str.substr(0,3)=='FN:' && vcf_use_which_name=='FN'){
-        strOut=str.substr(3);
-        while( strOut.substr(0,1)==";" ) strOut = strOut.substr(1); //remove beginning/starting ;;;
-        while( strOut.substr(-1)==";")   strOut = strOut.substr(0,str.length-1); //remove ending ;;;
-        strOut = sanitize_personname(strOut,false);
-        personOut = '<person><realName>'+strOut+'</realName></person>\n';
-    }
-    if(str.substr(0,2)=='N:' && vcf_use_which_name=='N'){
-        strOut=str.substr(2);
-        while( strOut.substr(0,1)==";" ) strOut = strOut.substr(1); //remove beginning/starting ;;;
-        while( strOut.substr(-1)==";")   strOut = strOut.substr(0,str.length-1); //remove ending ;;;
-        strOut = sanitize_personname(strOut,false);
-        personOut = '<person><realName>'+strOut+'</realName></person>\n';
-    }
-    
-    if(str.substr(0,3)=='TEL'){
-        var type=''; var typeRow='';
-        if(str.substr(0,9)=='TEL;TYPE='){
-        //var next_sim=str.substr(0,9)
-        var nextDoppelpunkt = str.substr(10).indexOf(':');
-        var nextSimokolon   = str.substr(10).indexOf(';');
-        var end_c = nextDoppelpunkt;
-        if(nextSimokolon>0 && nextSimokolon<nextDoppelpunkt)end_c = nextSimokolon;
-        if(end_c>0){
-            typeRow = str.substr(9,end_c+1);
-            if(typeRow.indexOf(',')>0){
-                var sub = typeRow.split(',');
-                for(k=0;k<sub.length;k++){
-                    if(sub[k]=='WORK')     type='WORK';
-                    if(sub[k]=='HOME')     type='HOME';
-                    if(sub[k]=='MOBILE')   type='MOBILE';
-                    if(sub[k]=='FAX_WORK') type='FAX_WORK';
-                }
-            } else type=typeRow;
-            typeOut='type="'+type.toLowerCase()+'"';
-        }else{       
-          if( document.getElementById("setting__2xml__phonenumber_edit_detect_mobile__active").checked && is_this_a_mobile_phonenumber(phone))     typeOut='type="mobile"';
-        }
-        }
-        /*else if(str.substr(0,4)=='TEL;'){
-        //var next_sim=str.substr(0,9)
-        var endType = str.substr(5).indexOf(':');
-        var simokolon = str.substr(5).indexOf(';');
-        if(endType>3 && simokolon==0)type=' TYPE="'+str.substr(9,endType-1)+'"';
-        }*/
-        var start = str.indexOf(':');
-        phoneOut += '<number '+typeOut+' id="'+j+'">'+str.substr(start+1)+'</number>\n';
-    }
-    if(str.substr(0,8)=='VERSION:')v=str.substr(8);
-    if(str.substr(0,5)=='NOTE:' && str.indexOf('importantContact(fritzbox)')>0)prio=true;
-    if(str.substr(0,5)=='EMAIL'){
-        var startEmail = str.substr(4).indexOf(':');
-        //if(startEmail>=0 && str.length>9)EmailOut+='<email>'+str.substr(startEmail+1)+'</email>';
-    }
-  }
-  
-  var catNumber=0;  if(prio) catNumber = 1;
-  out += '<contact>\n<category>'+catNumber+'</category>\n';
-  if(prio)phoneOut=phoneOut.replace(/(<number[^>]*)(>)/,'$1 prio="1">');
-  if(v==2.1)personOut = personOut.replace(/=/g,'%');
-  if(v==2.1)personOut = decodeURI(personOut);
-  out += personOut+'<telephony nid="'+i+'">\n' + phoneOut;
-  if(EmailOut!='') EmailOut='<services>'+EmailOut+'<services>';
-  out += '</telephony>\n'+EmailOut+'<setup />\n<features doorphone="0" /><mod_time></mod_time><uniqueid></uniqueid>\n</contact>\n';
- }
- out += '</phonebook>\n</phonebooks>';
- document.getElementById('phonebook_xml').value = out;
- return out;
- //download('xml',out);
 }
 
 
@@ -953,7 +609,6 @@ function get_filename(filename_with_path) {
 function download_one_file_ask(){
   if (confirm('Download text in .xml window?')) { uploaded_file_convert_to='xml'; prepare_and_download(document.getElementById('phonebook_xml').value); return; }
   if (confirm('Download text in .csv window?')) { uploaded_file_convert_to='csv'; prepare_and_download(document.getElementById('phonebook_csv').value); return; }
-  if (confirm('Download text in .vcf window?')) { uploaded_file_convert_to='vcf'; prepare_and_download(document.getElementById('phonebook_vcf').value); return; }
 }
 function prepare_and_download(text,filename) {
   if(text==undefined || text==null || text==false || text==""){ alert("Finish. End. No Output. Nothing to output."); return;}
@@ -961,12 +616,10 @@ function prepare_and_download(text,filename) {
   if(filename=='') filename='phonebook_for_fritzbox';
   if(uploaded_file_convert_to=='xml'){
    filename = filename.replace(/(\.)(csv)$/i,'_$2');
-   filename = filename.replace(/(\.)(vcf)$/i,'_$2');
    filename += "_converted_.xml";
   }
-  if(uploaded_file_convert_to=='csv' || uploaded_file_convert_to=='vcf'){
+  if(uploaded_file_convert_to=='csv'){
    if(filename!='')filename = filename.replace(/(\.)(xml)$/i,'_$2');
-   if(document.getElementById('setting__xml2vcf__allversions').checked) filename += '_v'+document.getElementById('setting__xml2vcf__version').value.replace(/\./,'-')+'_';
    filename += "_converted_."+uploaded_file_convert_to;
   }
   counter_convert++;
@@ -981,15 +634,14 @@ function download_sourcecode(){
       var jsonld = JSON.parse(document.querySelector('script[type="application/ld+json"]').innerText);
       if (typeof jsonld !== "undefined" && jsonld.softwareVersion !== "undefined" && jsonld.dateModified !== "undefined" ) filename_add = " v"+jsonld.softwareVersion.replace(/\./,'-')+" "+jsonld.dateModified.replace(/\./,'-');
   }
-  filename = 'converter phonebook fritzboxxml csv vcf vcard '+filename_add+'.'+uploaded_file_convert_to;
+  filename = 'converter phonebook fritzboxxml csv '+filename_add+'.'+uploaded_file_convert_to;
   text="<!DOCTYPE html>"+text;
   downloadAction(filename,text);
 }
 function downloadAction(filename, text) {
   if(text==undefined || text=="undefined" || text==false || text==""){alert("Error");return;}
   var element = document.createElement('a');
-  if     (uploaded_file_convert_to=='vcf') element.setAttribute('href', 'data:text/vcard;charset=utf-8,'      + encodeURIComponent(text));
-  else if(uploaded_file_convert_to=='csv') element.setAttribute('href', 'data:text/csv;charset=utf-8,'        + encodeURIComponent(text));
+  if     (uploaded_file_convert_to=='csv') element.setAttribute('href', 'data:text/csv;charset=utf-8,'        + encodeURIComponent(text));
   else if(uploaded_file_convert_to=='xml') element.setAttribute('href', 'data:application/xml;charset=utf-8,' + encodeURIComponent(text));
   else if(uploaded_file_convert_to=='html')element.setAttribute('href', 'data:text/html;charset=utf-8,'       + encodeURIComponent(text));
   else                                     element.setAttribute('href', 'data:text/plain;charset=utf-8,'      + encodeURIComponent(text));
@@ -1006,13 +658,6 @@ function downloadAction(filename, text) {
   if(counter_convert%2){ document.getElementById('ready').style.border="solid 1pt black"; document.getElementById('ready').style.background='#fff'; }
   else { document.getElementById('ready').style.border=""; document.getElementById('ready').style.background='#aaa';}
   //window.setTimeout("document.getElementById('ready').style.display='none';",10000);
-  document.getElementById('ready_note_export_to_vcf_multivcard').style.display='none';
-  document.getElementById('ready_note_export_to_vcf_allversions').style.display='none';
-    if(uploaded_file_convert_to=='vcf'){
-      document.getElementById('ready_note_export_to_vcf_multivcard').style.display='block';
-      if(document.getElementById('setting__xml2vcf__allversions').checked)
-        document.getElementById('ready_note_export_to_vcf_allversions').style.display='block';
-  }
 }
 
 function myTrimQuotes(aa){
@@ -1141,8 +786,7 @@ function get_filetype_by_ext(filename){
 }
 
 function ask__xml_convert_to(filename) {
-  if( confirm("convert to .csv?") ) { uploaded_file_convert_to='csv'; return convert_to_csv(); }
-  else if( confirm("convert to .vcf? (vcard)") ) { uploaded_file_convert_to='vcf'; return convert_to_vcf__maybe_all(filename); }
+  uploaded_file_convert_to='csv'; return convert_to_csv();
 }
 
 function f_merge__appendfile(format,origin,add){
@@ -1164,7 +808,6 @@ function f_merge__appendfile(format,origin,add){
        origin+=add;
      }
   }
-  if(format=="vcf")   origin+=add;
   return origin;
 }
 
@@ -1194,12 +837,10 @@ var readfiles__files_counter = 0;
 var f_merge_c = Array();
 f_merge_c["xml"] = 0;
 f_merge_c["csv"] = 0;
-f_merge_c["vcf"] = 0;
   
 function readMultipleFiles(e) {
   f_merge_c["xml"] = 0;
   f_merge_c["csv"] = 0;
-  f_merge_c["vcf"] = 0;
   do_a_merge=false;
   readfiles__files_counter = 0;
   document.getElementById('file-input_reset').style.display='block';
@@ -1228,12 +869,10 @@ function readMultipleFiles(e) {
           if (document.getElementById('setting__upload__filetype_auto_detect').checked && ( filetype_by_ext!='' || e.target.fileType!='' )  ){
               if( filetype_by_ext=='xml' || e.target.fileType=='application/xml' || e.target.fileType=='text/xml' ) type_from="xml";
               if( filetype_by_ext=='csv' || e.target.fileType=='text/csv' ) type_from="csv";
-              if( filetype_by_ext=='vcf' || e.target.fileType=='text/vcard' || e.target.fileType=='text/x-vcard' || e.target.fileType=='text/directory;profile=vCard' || e.target.fileType=='text/directory' ) type_from="vcf";
           }
           if(type_from==''){
             if(      confirm("Is this a .xml file?") ) type_from="xml";
             else if( confirm("Is this a .csv file?") ) type_from="csv";
-            else if( confirm("Is this a .vcf file?") ) type_from="vcf";
           }
           readfiles__files_counter++;
           if(type_from==''){ alert("ignore this file"); return; }
@@ -1244,7 +883,6 @@ function readMultipleFiles(e) {
               document.getElementById(textfield_id).value = contents;
               if(type_from=="xml"){ uploaded_file_convert_from='xml'; prepare_and_download( ask__xml_convert_to(filename) , filename);}
               if(type_from=="csv"){ uploaded_file_convert_from='csv'; uploaded_file_convert_to='xml'; prepare_and_download( convert_csv_to_xml() , filename); }
-              if(type_from=="vcf"){ uploaded_file_convert_from='vcf'; uploaded_file_convert_to='xml'; prepare_and_download( convert_vcf_to_xml() , filename); }
           }
           if(do_a_merge){ //merged files
             if(f_merge_c[type_from]==0)  document.getElementById(textfield_id).value= '';
@@ -1263,13 +901,10 @@ function readMultipleFiles(e) {
 
 function reader_finish__andDownloadMergedFile(filename){
    if(do_a_merge) if(
-     (f_merge_c["xml"]>0 && (f_merge_c["csv"]>0 || f_merge_c["vcf"]>0) ) ||
-     (f_merge_c["csv"]>0 && (f_merge_c["vcf"]>0 || f_merge_c["xml"]>0) ) ||
-     (f_merge_c["vcf"]>0 && (f_merge_c["xml"]>0 || f_merge_c["csv"]>0) )
+     f_merge_c["xml"]>0 && f_merge_c["csv"]>0
      ) { alert("Error: Please only upload files of a one single type (e.g. only .xml files). No mixing allowed."); return; }
    if(f_merge_c["xml"]>0){ uploaded_file_convert_from='xml'; prepare_and_download( ask__xml_convert_to(filename) , filename);}
    if(f_merge_c["csv"]>0){ uploaded_file_convert_from='csv'; uploaded_file_convert_to='xml'; prepare_and_download( convert_csv_to_xml() , filename); }
-   if(f_merge_c["vcf"]>0){ uploaded_file_convert_from='vcf'; uploaded_file_convert_to='xml'; prepare_and_download( convert_vcf_to_xml() , filename); }
 }
 
 
@@ -1354,7 +989,7 @@ Option B (alternativ) :
    <li>Download this Page: 
      <ul>
       <li><a href="#" onclick="download_sourcecode()">click here</a> or </li>
-      <li>alternative <a href="https://codeberg.org/soerenj/fritzbox_phonebook_convert_xml_csv_vcf/raw/branch/pages/fritzbox_phonebook_convert.html">here</a> or </li>
+      <li>alternative <a href="https://codeberg.org/soerenj/fritzbox_phonebook_convert_xml_csv/raw/branch/pages/fritzbox_phonebook_convert_csv.html">here</a> or </li>
       <li><i>save page</i> in your Browser <i>(e.g.: Menue File -&gt; Save Page - or - press hotkey <kbd>STRG</kbd>+<kbd>s</kbd>)</i></li>
      </ul>
    </li>
@@ -1382,7 +1017,7 @@ Option B (alternativ) :
    <li>Download dieser Internet-Seite: 
      <ul>
       <li> <a href="#" onclick="download_sourcecode()">Hier klicken</a> oder </li>
-      <li>alternativ <a href="https://codeberg.org/soerenj/fritzbox_phonebook_convert_xml_csv_vcf/raw/branch/pages/fritzbox_phonebook_convert.html">hier</a> oder </li>
+      <li>alternativ <a href="https://codeberg.org/soerenj/fritzbox_phonebook_convert_xml_csv/raw/branch/pages/fritzbox_phonebook_convert_csv.html">hier</a> oder </li>
       <li><i>Seite speichern</i> in ihren Internet-Browser wählen <i>(z.B.: Menü Datei -&gt; Seite speichern - oder - Tastenkombination <kbd>STRG</kbd>+<kbd>s</kbd>)</i></li>
      </ul>
    </li>
@@ -1408,13 +1043,10 @@ Possible to convert:
 <ul>
 <li> Fritzbox <em>.xml</em> to <em>.csv</em></li>
 <li> <em>.csv</em> to Fritzbox <em>.xml</em></li>
-
-<li> Fritzbox <em>.xml</em> to <em>.vcf</em> / Vcard</li>
-<li> <em>.vcf</em> / Vcard to Fritzbox <em>.xml</em></li>
 </ul>
 Other functions:
 <ul>
-<li> Multiple Files can be selected and merge before: .csv or .vcf Files. (press <kbd>STRG</kbd> while file selection).</li>
+<li> Multiple Files can be selected and merge before: .csv Files. (press <kbd>STRG</kbd> while file selection).</li>
 <li> open the .csv file in your Office Programm (e.g. LibreOffice).</li>
 <li> It's running in directly your browser. ( No need of installation. No server. No Cloud. Only local Programm-Code. )</li>
 </ul>
@@ -1428,14 +1060,11 @@ Möglich umzuwandeln ist:
 <ul>
 <li> Fritzbox <em>.xml</em> zu <em>.csv</em></li>
 <li> <em>.csv</em> zu Fritzbox <em>.xml</em></li>
-
-<li> Fritzbox <em>.xml</em> zu <em>.vcf</em> / Vcard</li>
-<li> <em>.vcf</em> / Vcard zu Fritzbox <em>.xml</em></li>
 </ul>
 
 Weitere Funktionen:
 <ul>
-<li> Mehrere Dateien auswählen und vorher zusammenfügen: .csv und .vcf Dateien können vorher zusammengefügt werden. (beim Hochladen <kbd>STRG</kbd> gedrückt halten)</li>
+<li> Mehrere Dateien auswählen und vorher zusammenfügen: .csv Dateien können vorher zusammengefügt werden. (beim Hochladen <kbd>STRG</kbd> gedrückt halten)</li>
 <li> öffne die .csv Dateien in Ihren Office Programm (z.B. LibreOffice).</li>
 <li> Es läuft direkt im Browser.  ( Es ist keine Installtion nötig. Kein Server. Keine Cloud. Nur lokal ausgeführte Programmcode. )</li>
 </ul>
@@ -1443,6 +1072,9 @@ Weitere Funktionen:
 <aside>
  <h3>Alternative Services / Tools</h3>
  <ul>
+  <li>Online Web-Service: (local JavaScript inside Browser)<br/>
+convert .xml to .vcf (=import/export) <br/>
+<a href="https://soerenj.github.io/fritzbox_phonebook_convert_xml_vcf/fritzbox_phonebook_convert_vcf.html">https://soerenj.github.io/fritzbox_phonebook_convert_xml_vcf/fritzbox_phonebook_convert_vcf.html</a> <br>
   <li>Online Web-Service: (local JavaScript inside Browser)<br/>
 convert .xml to .vcf (=export) <br/>
 <a href="https://blog.rillke.com/fritzXML2vcard/">https://blog.rillke.com/fritzXML2vcard/</a>  &nbsp; ; &nbsp; <a href="https://github.com/Rillke/fritzXML2vcard?tab=readme-ov-file">Sourcecode</a> <br>
@@ -1464,9 +1096,9 @@ convert .xml to .vcf (=export) <br/>
  <h3>Sourcecode</h3>
  <small lang="en" class="en">Or also report error / issue there.</small><small lang="de" class="de">Oder auch Fehler melden dort.</small><br>
 Licence: <a href="LICENSE" rel="jslicense">APGL</a> and  | Version: <span id="version_out"></span> | <a href="#" onClick="download_sourcecode();return false">Download this page (without images)</a><br>
-Developer-Portal "codeberg": <a href="https://codeberg.org/soerenj/fritzbox_phonebook_convert_xml_csv_vcf/">https://codeberg.org/soerenj/fritzbox_phonebook_convert_xml_csv_vcf/</a> &nbsp; ; &nbsp; <a href="https://github.com/soerenj/fritzbox_phonebook_convert_xml_csv_vcf/commits/master">change-Log/History</a>
+Developer-Portal "codeberg": <a href="https://codeberg.org/soerenj/fritzbox_phonebook_convert_xml_csv/">https://codeberg.org/soerenj/fritzbox_phonebook_convert_xml_csv/</a> &nbsp; ; &nbsp; <a href="https://github.com/soerenj/fritzbox_phonebook_convert_xml_csv/commits/master">change-Log/History</a>
 <br>or <br>
-Developer-Portal "github": <a href="https://github.com/soerenj/fritzbox_phonebook_convert_xml_csv_vcf/">https://github.com/soerenj/fritzbox_phonebook_convert_xml_csv_vcf/</a> &nbsp; ; &nbsp; <a href="https://github.com/soerenj/fritzbox_phonebook_convert_xml_csv_vcf/commits/master">Change-Log/History</a>
+Developer-Portal "github": <a href="https://github.com/soerenj/fritzbox_phonebook_convert_xml_csv/">https://github.com/soerenj/fritzbox_phonebook_convert_xml_csv/</a> &nbsp; ; &nbsp; <a href="https://github.com/soerenj/fritzbox_phonebook_convert_xml_csv/commits/master">Change-Log/History</a>
 </details>
 
 </footer>
