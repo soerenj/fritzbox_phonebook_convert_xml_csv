@@ -5,14 +5,16 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name=”name” content=”title” lang="en" content="Convert Fritzbox Phonebook | webservice" />
-<meta name=”name” content=”title” lang="de" content="Umwandlung Fritzbox Telefonbuch | web-dienst" />
-<meta name=”name” content=”description” lang="en" content="Online converter for phonebook files from router Fritzbox .xml : between .xml ↔ to / from .csv and backwards" />
-<meta name=”name” content=”description” lang="de" content="Online konvertierung umwandlung vom Telefonbuch der Fritzbox (.xml Datei) : zwischen .xml ↔ von / nach .csv  und zurück." />
+<meta name="title" lang="en" content="Convert Fritzbox Phonebook | webservice" />
+<meta name="title" lang="de" content="Umwandlung Fritzbox Telefonbuch | web-dienst" />
+<meta name="application-name" lang="en" content="Converter: Fritzbox Phonebook xml ↔ csv" />
+<meta name="application-name" lang="de" content="Umwandler: Fritzbox Telefonbuch  xml ↔ csv" />
+<meta name="description" lang="en" content="Online converter for phonebook files from router Fritzbox .xml : between .xml ↔ to / from .csv and backwards" />
+<meta name="description" lang="de" content="Online konvertierung umwandlung vom Telefonbuch der Fritzbox (.xml Datei) : zwischen .xml ↔ von / nach .csv  und zurück." />
 <meta property="og:title" lang="en" content="Convert Fritzbox Phonebook | webservice" />
 <meta property="og:title" lang="de" content="Umwandlung Fritzbox Telefonbuch | web-dienst" />
-<meta name=”name” content=”og:description” lang="en" content="Online converter for phonebook files from router Fritzbox .xml : between .xml ↔ to / from .csv backwards" />
-<meta name=”name” content=”og:description” lang="de" content="Online konvertierung umwandlung vom Telefonbuch der Fritzbox (.xml Datei) : zwischen .xml ↔ von / nach .csv und zurück." />
+<meta property="og:description" lang="en" content="Online converter for phonebook files from router Fritzbox .xml : between .xml ↔ to / from .csv backwards" />
+<meta property="og:description" lang="de" content="Online konvertierung umwandlung vom Telefonbuch der Fritzbox (.xml Datei) : zwischen .xml ↔ von / nach .csv und zurück." />
 <meta property="og:type" content="webapp" />
 <!--
 <link rel="icon" href="img/icon_convert_formats.png" sizes="141x96" />
@@ -20,10 +22,10 @@
 -->
 <meta property="og:url" lang="de" content="https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html#de" />
 <meta property="og:url" lang="en" content="https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html#en" />
-<link rel="canonical" href="https://soerenj.codeberg.page/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html" />
 <link rel="alternate" href="https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html#en" lang="en" hreflang="en" />
 <link rel="alternate" href="https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html#de" lang="de" hreflang="de" />
 <!-- "image": "https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/img/icon_convert_formats.png", -->
+<link rel="canonical" href="https://soerenj.codeberg.page/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html" />
 <script type='application/ld+json'>
 {
 	"@context": "http://schema.org/",
@@ -37,12 +39,12 @@
 	"name": "convert phonebook Fritzbox",
 	"description": "convert phonebook files from router Fritzbox .xml to .csv and backwards",
 	"programmingLanguage": "javascript",
-	"dateModified": "2025-05-23",
-	"softwareVersion": "0.30",
+	"dateModified": "2025-05-28",
+	"softwareVersion": "0.31",
 	"inLanguage": ["en", "de"],
     "mainEntityOfPage":"https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html",
 	"url":"https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html",
-	"SoftwareSourceCode": "https://codeberg.org/soerenj/fritzbox_phonebook_convert_xml_csv/",
+	"SoftwareSourceCode": "https://github.com/soerenj/fritzbox_phonebook_convert_xml_csv/",
 	"isBasedOn": "https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv_vcf/fritzbox_phonebook_convert.html",
 	"sameAs": "https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html"
 }
@@ -60,8 +62,8 @@
 <body>
 <!--
  /*
- * version: 0.30
- * date: 2025-05-23
+ * version: 0.31
+ * date: 2025-05-28
  *
  * Licence 
  *
@@ -79,20 +81,39 @@
 <span style="float:right"><a href="#en" onClick="changeLanguage('en')" alt="en" hreflang="en" title="change language to english">&#127468&#127463</a> <a href="#de" onClick="changeLanguage('de')" hreflang="de" alt="de" title="wechsel die Sprache zu deutsch / german">&#127465&#127466</a></span>
 <h1 lang="en" class="en">Phonebook Contact convert for Fritzbox</h1>
 <h1 lang="de" class="de">Telefonbuch Kontakte konvertieren für Fritzbox</h1>
-<p lang="en" class="en">Converts Fritzbox-XML-Files to/from .CSV-File with Phone Numbers.</p>
-<p lang="de" class="de">Konvertiert Fritzbox-XML-Dateien zu/von .CSV-Dateien mit Telefonnummer</p>
+<h2 lang="en" class="en">Converts Fritzbox .XML-Files to/from .CSV-File.</h2>
+<h2 lang="de" class="de">Konvertiert Fritzbox .XML-Dateien zu/von .CSV-Dateien.</h2>
 <span style="clear:both"></span><br>
 </header>
 <noscript style="color:red">You need JavaScript, to use this service.</noscript>
-<hr>
+
 <div id="select_file_auto-detect_div">
+<!--
 <span lang="en" class="en">Select &nbsp;- or -&nbsp; drag & drop file(s): </span>
 <span lang="de" class="de">Auswählen &nbsp;- oder -&nbsp; hier reinziehen von Datei(en) <span style="color:#999;">("drag & drop")</span>:</span>
 <br />
 <span style="color:#999999"><i><span lang="en" class="en">Allowed</span><span lang="de" class="de">Erlaubt</span>: Fritzbox .xml , .csv</i></span><br>
+-->
 <span id="file-input_auto-detect_text_drophere" style="display:none">Drop your file here</span>
-<input type="file" multiple id="file-input_auto-detect" autocomplete="off" /><a href="#" id="file-input_auto-detect_close_button" style="display:none;background: white;  font-size: 2em;  text-align: right;  top: 10%;  position: absolute;  padding: 0.5em;  right: 10%; border-radius:20pt;" onClick="unhighlight();return false;" class="maybebutton">Close 🗙</a><br>
-</div><br>
+<input type="file" multiple id="file-input_auto-detect" autocomplete="off" style="display:none" /><a href="#" id="file-input_auto-detect_close_button" style="display:none;background: white;  font-size: 2em;  text-align: right;  top: 10%;  position: absolute;  padding: 0.5em;  right: 10%; border-radius:20pt;" onClick="unhighlight();return false;" class="maybebutton">Close 🗙</a><br>
+</div>
+<p>
+<span lang="en" class="en">Your .xml file:</span><span lang="de" class="de">Ihre .xml Datei:</span>
+<input type="file" multiple id="file-input_xml" autocomplete="off" /></p>
+<p>
+<p><span lang="en" class="en"> - or - </span><span lang="de" class="de"> - oder - </span></p>
+<span lang="en" class="en">Your .csv file:</span><span lang="de" class="de">Ihre .csv Datei:</span>
+<input type="file" multiple id="file-input_format2" autocomplete="off" /></p>
+</br>
+<p style="color:#999"> 
+<span lang="en" class="en">Alternativ with Drag & Drop. </span>
+<span lang="de" class="de">Alternativ per Drag & Drop<!-- <small style="color:#999;">(also das hier hin rein-ziehen von Datei<em>en</em> )</small>-->.</span>
+</p>
+<br>
+<div id="ready" style="display:none;margin-top:5pt;margin-left: 50pt;background: #ddd;padding: 10pt;border-radius: 5pt;">
+ <span lang="en" class="en">Ready. Check now your download folder</span>
+ <span lang="de" class="de">Fertig. Überprüfen Sie Ihren Download-Ordner</span>
+</div>
 <p id="show_advanced_view_link_link_close" style="display:none">
 <a href="#" onclick="show_advanced_view('hide');return false" class="maybebutton">
     <span lang="en" class="en">&blacktriangledown; &nbsp; close text source window 🗙</span>
@@ -130,20 +151,15 @@
 </textarea>
 </div>
 
-<div id="ready" style="display:none;margin-top:5pt;margin-left: 50pt;background: #ddd;padding: 10pt;border-radius: 5pt;">
- <span lang="en" class="en">Ready. Check now your download folder</span>
- <span lang="de" class="de">Fertig. Überprüfen Sie Ihren Download-Ordner</span>
-</div>
-
 <!-- ↓↑ ⇓⇑ ⇩⇧ ⟱ ⟰ ⬆⬇ -->
-<br>
 <div class="advanced_view">
+ <br>
  <input type="button" value="convert: ⬇ xml to csv" onclick="convert_to_csv()" />  &nbsp;
  <input type="button" value="Download" title="Download one file" onclick="download_one_file_ask()" />   &nbsp; 
  <input type="button" value="Reset to Test-Values" title="reset to default" onclick="reset_to_default()" />   &nbsp;  
 </div>
-<br/>
 <div id="select_file_xml_csv" class="advanced_view">
+<br/>
 <br><br>
 <label for="phonebook_csv">From .CSV File:</label> <input type="button" value="convert: ⇧ csv to xml" onclick="convert_csv_to_xml()" />   &nbsp;  <br>
 <textarea id="phonebook_csv" autocomplete="off">name, phone, type, importantPerson, email, quickdial, vanity
@@ -173,7 +189,7 @@
       <span lang="en" class="en">Uploaded file</span>
       <span lang="de" class="de">Hochgeladene Datei</span>
     </legend>
-    <input type="checkbox" onChange="var e=document.getElementById('file-input_auto-detect');if(!this.checked) e.accept=''; else e.accept=file_upload__accepted_filetype;" id="setting__upload__filetype_only_accepted" checked autocomplete="off">
+    <input type="checkbox" onChange="showOnlySupportedChange(this.value)" id="setting__upload__filetype_only_accepted" checked autocomplete="off">
     <label for="setting__upload__filetype_only_accepted">
       <span lang="en" class="en">Show only supported files (.xml / .csv / ~ ) <span style="color:#999">( only these are selectable in file upload window/dialog in browser )</span></span>
       <span lang="de" class="de">Zeige nur unterstützte Dateien (.xml / .csv / ~) an <span style="color:#999">( nur diese sind auswählbar im Datei-auswählen Fenster im Browser )</span></span>
@@ -285,7 +301,7 @@
     <span lang="en" class="en">That is the shown new Phonebook-Name in the Fritzbox. This is not the filename.</span>
     <span lang="de" class="de">Das ist der neue Telefonbuch-Namen in der Fritzbox selbst. Es ist nicht der Datei-Name.</span>
   </span>
-  <button type="button" onClick="document.getElementById('file-input_auto-detect').dispatchEvent(new Event('change'));" id="convert_again_file" style="display:none;margin-top:10pt;margin-bottom:10pt;" value="Convert the same file again" ><span lang="en" class="en">Convert the same file again</span><span lang="de" class="de">Konvertiere die gleiche Datei nochmal</span></button>
+  <button type="button" onClick="document.getElementById(last_uploaded_file__fieldid).dispatchEvent(new Event('change'));" id="convert_again_file" style="display:none;margin-top:10pt;margin-bottom:10pt;" value="Convert the same file again" ><span lang="en" class="en">Convert the same file again</span><span lang="de" class="de">Konvertiere die gleiche Datei nochmal</span></button>
   </div>
   </fieldset>
  </details>
@@ -293,9 +309,10 @@
 </div>
 
 <input type="button" id="file-input_reset" style="display:none;margin-top:22pt" value="reset" onclick="reset_to_default()" />
-
+</br>
 <script language="JavaScript">
 <!--
+var last_uploaded_file__fieldid='file-input_auto-detect';
 var uploaded_file_convert_from = '';
 var uploaded_file_convert_to = '';
 var counter_convert = 0;
@@ -339,10 +356,17 @@ for(i=0;i<pre_numbers__with_country_codes__and_mobile.length;i++){
 }
 if(detected_default_langcountrycode!='')e.value=detected_default_langcountrycode;
 
-if(document.getElementById('file-input_auto-detect').value!='')document.getElementById('file-input_reset').style.display='block';
+if(document.getElementById('file-input_auto-detect').value!='' ||
+   document.getElementById('file-input_xml').value!='' ||
+   document.getElementById('file-input_format2').value!='')document.getElementById('file-input_reset').style.display='block';
 document.getElementById('new_phonebook_name').value=new_phonebook_name;
 var file_upload__accepted_filetype = ".xml,.csv,text/csv,application/xml,text/xml";
-var e =document.getElementById('file-input_auto-detect'); if(e.accept!=undefined)e.accept=file_upload__accepted_filetype
+var file_upload__accepted_filetype__xml = ".xml,application/xml,text/xml";
+var file_upload__accepted_filetype__format2 = ".csv,text/csv";
+var e =null;
+e = document.getElementById('file-input_auto-detect'); if(e.accept!=undefined)e.accept=file_upload__accepted_filetype;
+e = document.getElementById('file-input_xml'); if(e.accept!=undefined)e.accept=file_upload__accepted_filetype__xml;
+e = document.getElementById('file-input_format2'); if(e.accept!=undefined)e.accept=file_upload__accepted_filetype__format2;
 if(setting__xml2csv__just_one_phonenumer_each==1) document.getElementById('setting__xml2csv__just_one_phonenumer_each_text__single_row').checked=true;
 if(setting__xml2csv__just_one_phonenumer_each==2) document.getElementById('setting__xml2csv__just_one_phonenumer_each_text__multiple_rows').checked=true;
 if(setting__xml2csv__just_one_phonenumer_each==3) document.getElementById('setting__xml2csv__just_one_phonenumer_each_text__multiple_rows__with_type').checked=true;
@@ -354,7 +378,15 @@ function reset_to_default(){
  document.getElementById('phonebook_xml').value = document.getElementById('phonebook_xml').defaultValue;
  document.getElementById('phonebook_csv').value = document.getElementById('phonebook_csv').defaultValue;
  document.getElementById('file-input_auto-detect').value='';
+ document.getElementById('file-input_xml').value='';
+ document.getElementById('file-input_format2').value='';
  document.getElementById('ready').style.display="none";
+}
+
+function showOnlySupportedChange(v){
+  e = document.getElementById('file-input_auto-detect');if(!v) e.accept=''; else e.accept=file_upload__accepted_filetype;
+  e = document.getElementById('file-input_xml');if(!v) e.accept=''; else e.accept=file_upload__accepted_filetype__xml;
+  e = document.getElementById('file-input_format2');if(!v) e.accept=''; else e.accept=file_upload__accepted_filetype__format2;
 }
 
 
@@ -863,7 +895,10 @@ function readMultipleFiles(e) {
   for(i=0;i<files.length;i++){
       var file = files[i];
       var reader = new FileReader();
-      if(e.target.id=='file-input_auto-detect'){
+      if(e.target.id=='file-input_auto-detect' || e.target.id=='file-input_xml' || e.target.id=='file-input_format2'){
+        last_uploaded_file__fieldid = e.target.id;
+        if(e.target.id=='file-input_auto-detect') document.getElementById('file-input_auto-detect').style.display='block';
+        else document.getElementById('file-input_auto-detect').style.display='none';
         reader.fileName = file.name;
         reader.fileType = file['type'];
         reader.onload = function(e) {
@@ -916,6 +951,10 @@ function reader_finish__andDownloadMergedFile(filename){
 
 document.getElementById('file-input_auto-detect')
   .addEventListener('change', readMultipleFiles, false);
+document.getElementById('file-input_xml')
+  .addEventListener('change', readMultipleFiles, false);
+document.getElementById('file-input_format2')
+  .addEventListener('change', readMultipleFiles, false);
 
 
 //document.getElementById('file-input_auto-detect').value='';
@@ -937,7 +976,9 @@ function show_advanced_view(state){
    show_advanced_view__state = false;
    document.getElementById("show_advanced_view_link_wrapper").style.display='';
    document.getElementById("show_advanced_view_link_link_close").style.display='none';
-   if(document.getElementById('file-input_auto-detect').value!='')document.getElementById('file-input_reset').style.display='block';
+   if(document.getElementById('file-input_auto-detect').value!='' || 
+      document.getElementById('file-input_xml').value!='' || 
+      document.getElementById('file-input_format2').value!='') document.getElementById('file-input_reset').style.display='block';
  }
 }
 
@@ -953,6 +994,7 @@ function preventDefaults (e) {
 }
 
 function highlight(e) {
+  document.getElementById('file-input_auto-detect').style.display='block';
   dropArea.classList.add('drop-area_highlight');
   dropAreaText.classList.add('drop-area_text_highlight');
   dropAreaText.style.display='block';
@@ -976,7 +1018,6 @@ dropAreaDetect.addEventListener('drop', unhighlight, false);
 
 //-->
 </script>
-<br><br><br>
 <hr>
 
 <!--<em style="color:#ababab;float:right;padding-right:10pt; ">file process only name & phone number</em>-->
