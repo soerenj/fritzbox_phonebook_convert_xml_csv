@@ -98,21 +98,24 @@
 <input type="file" multiple id="file-input_auto-detect" autocomplete="off" style="display:none" /><a href="#" id="file-input_auto-detect_close_button" style="display:none;background: white;  font-size: 2em;  text-align: right;  top: 10%;  position: absolute;  padding: 0.5em;  right: 10%; border-radius:20pt;" onClick="unhighlight();return false;" class="maybebutton">Close 🗙</a><br>
 </div>
 <p>
-<span lang="en" class="en">Your .xml file:</span><span lang="de" class="de">Ihre .xml Datei:</span>
+<label for="file-input_xml" id="label_file-input_xml">
+ <span lang="en" class="en">Your .xml file:</span>
+ <span lang="de" class="de">Ihre .xml Datei:</span>
+</label>
 <input type="file" multiple id="file-input_xml" autocomplete="off" /></p>
 <p>
-<p><span lang="en" class="en"> - or - </span><span lang="de" class="de"> - oder - </span></p>
-<span lang="en" class="en">Your .csv file:</span><span lang="de" class="de">Ihre .csv Datei:</span>
-<input type="file" multiple id="file-input_format2" autocomplete="off" /></p>
-</br>
-<p style="color:#999"> 
-<span lang="en" class="en">Alternativ with Drag & Drop. </span>
-<span lang="de" class="de">Alternativ per Drag & Drop<!-- <small style="color:#999;">(also das hier hin rein-ziehen von Datei<em>en</em> )</small>-->.</span>
+<p> <span lang="en" class="en"> - or - </span><span lang="de" class="de"> - oder - </span> </p>
+<label for="file-input_format2" id="label_file-input_format2">
+ <span lang="en" class="en">Your .csv file:</span>
+ <span lang="de" class="de">Ihre .cvs Datei:</span>
+</label>
+<input type="file" multiple id="file-input_format2" autocomplete="off" />
 </p>
+</br>
 <br>
 <div id="ready" style="display:none;margin-top:5pt;margin-left: 50pt;background: #ddd;padding: 10pt;border-radius: 5pt;">
- <span lang="en" class="en">Ready. Check now your download folder</span>
- <span lang="de" class="de">Fertig. Überprüfen Sie Ihren Download-Ordner</span>
+ <span lang="en" class="en">Ready. Look in your download folder</span>
+ <span lang="de" class="de">Fertig. Schauen Sie in Ihren Download-Ordner</span>
 </div>
 <p id="show_advanced_view_link_link_close" style="display:none">
 <a href="#" onclick="show_advanced_view('hide');return false" class="maybebutton">
@@ -184,23 +187,7 @@
   </summary>
   <fieldset><legend>Settings</legend>
   <div>
-  <fieldset >
-    <legend>
-      <span lang="en" class="en">Uploaded file</span>
-      <span lang="de" class="de">Hochgeladene Datei</span>
-    </legend>
-    <input type="checkbox" onChange="showOnlySupportedChange(this.value)" id="setting__upload__filetype_only_accepted" checked autocomplete="off">
-    <label for="setting__upload__filetype_only_accepted">
-      <span lang="en" class="en">Show only supported files (.xml / .csv / ~ ) <span style="color:#999">( only these are selectable in file upload window/dialog in browser )</span></span>
-      <span lang="de" class="de">Zeige nur unterstützte Dateien (.xml / .csv / ~) an <span style="color:#999">( nur diese sind auswählbar im Datei-auswählen Fenster im Browser )</span></span>
-    </label> <br />
-    <input type="checkbox" id="setting__upload__filetype_auto_detect" checked autocomplete="off">
-    <label for="setting__upload__filetype_auto_detect">
-      <span lang="en" class="en">Automatic detection of file-type</span>
-      <span lang="de" class="de">Automatisch Datei-Type feststellen</span>
-    </label> <span style="color:#999">(detected by file-extension .xml / .csv / or MIME-Type ; Otherwise you will be ask)</span>
-  </fieldset>
-  <fieldset ><legend>* to xml (=import to fritzbox)</legend>
+  <fieldset ><legend>* &Arr; xml (=import to fritzbox)</legend>
     <!--<span lang="en" class="en">Phone-Number edits:</span>
     <span lang="de" class="de">Telefon-Nummer bearbeiten:</span>-->
     <p style="margin: 0pt;">
@@ -219,7 +206,7 @@
     </select>
     </p>
   </fieldset>
-  <fieldset ><legend>xml to * (=export from fritzbox)</legend>
+  <fieldset ><legend>xml &Arr; * (=export from fritzbox)</legend>
     <!--<span lang="en" class="en">Phone-Number edits:</span>
     <span lang="de" class="de">Telefon-Nummer bearbeiten:</span>-->
     <p style="margin: 0pt;">
@@ -302,6 +289,33 @@
     <span lang="de" class="de">Das ist der neue Telefonbuch-Namen in der Fritzbox selbst. Es ist nicht der Datei-Name.</span>
   </span>
   <button type="button" onClick="document.getElementById(last_uploaded_file__fieldid).dispatchEvent(new Event('change'));" id="convert_again_file" style="display:none;margin-top:10pt;margin-bottom:10pt;" value="Convert the same file again" ><span lang="en" class="en">Convert the same file again</span><span lang="de" class="de">Konvertiere die gleiche Datei nochmal</span></button>
+    <details>
+   <summary>
+      <span lang="en" class="en">unimportant: Select file dialog - type detection</span>
+      <span lang="de" class="de">unwichtig: Datei auswählen - Datei Type erkennung</span>
+   </summary>
+  <fieldset >
+    <legend>
+      <span lang="en" class="en">Select file dialog</span>
+      <span lang="de" class="de">Datei auswählen</span>
+    </legend>
+    <input type="checkbox" onChange="showOnlySupportedChange(this.value)" id="setting__upload__filetype_only_accepted" checked autocomplete="off">
+    <label for="setting__upload__filetype_only_accepted">
+      <span lang="en" class="en">Show only supported files (.xml / .csv / ~ ) <span style="color:#999">( only these are selectable in file upload window/dialog in browser )</span></span>
+      <span lang="de" class="de">Zeige nur unterstützte Dateien (.xml / .csv / ~) an <span style="color:#999">( nur diese sind auswählbar im Datei-auswählen Fenster im Browser )</span></span>
+    </label> <br />
+    <input type="checkbox" id="setting__upload__filetype_auto_detect" checked autocomplete="off">
+    <label for="setting__upload__filetype_auto_detect">
+      <span lang="en" class="en">Automatic detection of file-type 
+         <span style="color:#999">(detected by file-extension .xml / .csv or MIME-Type ; Otherwise you will be ask)</span>
+      </span>
+      <span lang="de" class="de">Automatisch Datei-Type feststellen
+        <span style="color:#999">(festgestellt über Datei-Erweiterung (=Datei-Endung) .xml / .csv or MIME-Type ; Ansonsten wird man gefragt)</span>
+      </span>
+    </label>
+  </fieldset>
+  </details>
+  <br>
   </div>
   </fieldset>
  </details>
@@ -887,8 +901,8 @@ function readMultipleFiles(e) {
     return;
   }
   document.getElementById('convert_again_file').style.display='block';
-  var text__AskShouldIMerge="Merge the multiple files to a single phonebook? \n(only with the same file-format possible)";
-  if(selectedLanguage=="de")text__AskShouldIMerge="Zusammenfügen von verschiedenen einzelenen Telefonbüchern zu einen einzigen?";
+  var text__AskShouldIMerge="Merge to a single merged phonebook?"; //\n(only with the same file-format possible)
+  if(selectedLanguage=="de")text__AskShouldIMerge="Zusammenfügen zu einen einzelnen Telefonbuch?";
   if(files.length>1 && confirm(text__AskShouldIMerge)) do_a_merge=true;
   
   readfiles__files_count = files.length;
@@ -1023,8 +1037,8 @@ dropAreaDetect.addEventListener('drop', unhighlight, false);
 <!--<em style="color:#ababab;float:right;padding-right:10pt; ">file process only name & phone number</em>-->
 <details>
  <summary onclick="window.scrollBy(0, 100);window.setTimeout('window.scrollBy(0, 100);',50)" title="more privacy info">
-  <span lang="en" class="en">Full Data-Privacy : because directly converted inside of your Browser: no server, no cloud)</span>
-  <span lang="de" class="de">Voller Datenschutz : da direkt im ihren Browser konvertiert wird: ohne Server, ohne cloud)</span>
+  <span lang="en" class="en">Full Data-Privacy : because directly converted inside of your Browser: no server, no cloud</span>
+  <span lang="de" class="de">Voller Datenschutz : da direkt in ihrem Browser konvertiert wird: ohne Server, ohne cloud</span>
  </summary>
 <div lang="en" class="en" id="sec_adv_en"><h3>Privacy</h3>You Privacy are keept: This Page works just on your computer (or offline). Your Data will stay only on your own local computer. No Cloud, no Server. It is just pure local JavaScript-Code in your Browser. <br><br>You are still unsure, using this?: My Security-Advise:<br><a name="sec_adv_en" />
 <p>Option A:
@@ -1104,9 +1118,9 @@ Possible to convert:
 </ul>
 Other functions:
 <ul>
-<li> Multiple Files can be selected and merge before: .csv Files. (press <kbd>STRG</kbd> while file selection).</li>
-<li> open the .csv file in your Office Programm (e.g. LibreOffice).</li>
 <li> It's running in directly your browser. ( No need of installation. No server. No Cloud. Only local Programm-Code. )</li>
+<li> open the .csv file in your Office Programm (e.g. LibreOffice).</li>
+<li> Multiple Files can be selected and merge before: .csv Files. (press <kbd>STRG</kbd> while file selection).</li>
 </ul>
  Short adress:
 <ul>
@@ -1126,9 +1140,9 @@ Möglich umzuwandeln ist:
 
 Weitere Funktionen:
 <ul>
-<li> Mehrere Dateien auswählen und vorher zusammenfügen: .csv Dateien können vorher zusammengefügt werden. (beim Hochladen <kbd>STRG</kbd> gedrückt halten oder per <kbd>⇧ Shift<small>(auch Umschalttaste genannt)</small></kbd>)</li>
-<li> öffne die .csv Dateien in Ihren Office Programm (z.B. LibreOffice).</li>
 <li> Es läuft direkt im Browser.  ( Es ist keine Installtion nötig. Kein Server. Keine Cloud. Nur lokal ausgeführte Programmcode. )</li>
+<li> öffne die .csv Dateien in Ihren Office Programm (z.B. LibreOffice).</li>
+<li> Mehrere Dateien auswählen und vorher zusammenfügen: .csv Dateien können vorher zusammengefügt werden. (beim Hochladen <kbd>STRG</kbd> gedrückt halten oder per <kbd>⇧ Shift<small>(auch Umschalttaste genannt)</small></kbd>)</li>
 </ul>
 </span>
  <h3>
@@ -1176,6 +1190,13 @@ convert .xml to .vcf (=export) <br/>
 </ul>
 </details>
 </aside>
+
+<span style="color:#aaa">
+<small>
+<span lang="en" class="en">Drag'n'Drop possible. </span>
+<span lang="de" class="de" title="(also das hier hin rein-ziehen von Datei(en))">Drag'n'Drop möglich<!-- <small style="color:#999;">(also das hier hin rein-ziehen von Datei<em>en</em> )</small>-->.</span>
+</small>
+</span>
 
 <br/>
 
