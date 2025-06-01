@@ -164,7 +164,7 @@
 <div id="select_file_xml_csv" class="advanced_view">
 <br/>
 <br><br>
-<label for="phonebook_csv">From .CSV File:</label> <input type="button" value="convert: ⇧ csv to xml" onclick="convert_csv_to_xml()" />   &nbsp;  <br>
+<label for="phonebook_csv">From .CSV File:</label> <input type="button" value="convert: ⇧ csv to xml" onclick="convert_to_xml()" />   &nbsp;  <br>
 <textarea id="phonebook_csv" autocomplete="off">name, phone, type, importantPerson, email, quickdial, vanity
 "Person C", "080123456789"
 "Person C", "0801234567890978768"
@@ -327,8 +327,6 @@
 <script language="JavaScript">
 <!--
 var last_uploaded_file__fieldid='file-input_auto-detect';
-var uploaded_file_convert_from = '';
-var uploaded_file_convert_to = '';
 var counter_convert = 0;
 var show_advanced_view__state = false;
 var new_phonebook_name = 'convertedPhonebook';
@@ -522,7 +520,7 @@ function sanitize_personname(person,inkluding_quotes){
 }
 
 
-function convert_csv_to_xml(){
+function convert_to_xml(){
   var text = document.getElementById('phonebook_csv').value;
   var out = ''; var person; logError=[];
   out += '<?xml version="1.0" encoding="utf-8"?>\n<phonebooks>\n<phonebook owner="" name="'+new_phonebook_name+'">\n';
@@ -659,43 +657,42 @@ function get_filename(filename_with_path) {
 }
 
 function download_one_file_ask(){
-  if (confirm('Download text in .xml window?')) { uploaded_file_convert_to='xml'; prepare_and_download(document.getElementById('phonebook_xml').value); return; }
-  if (confirm('Download text in .csv window?')) { uploaded_file_convert_to='csv'; prepare_and_download(document.getElementById('phonebook_csv').value); return; }
+  if (confirm('Download text in .xml window?')) { prepare_and_download(document.getElementById('phonebook_xml').value,'','xml'); return; }
+  if (confirm('Download text in .csv window?')) { prepare_and_download(document.getElementById('phonebook_csv').value,'','csv'); return; }
 }
-function prepare_and_download(text,filename) {
+function prepare_and_download(text,filename,typeOut) {
   if(text==undefined || text==null || text==false || text==""){ alert("Finish. End. No Output. Nothing to output."); return;}
   if(filename == undefined || filename=='') filename='';
   if(filename=='') filename='phonebook_for_fritzbox';
-  if(uploaded_file_convert_to=='xml'){
+  if(typeOut=='xml'){
    filename = filename.replace(/(\.)(csv)$/i,'_$2');
    filename += "_converted_.xml";
   }
-  if(uploaded_file_convert_to=='csv'){
+  if(typeOut=='csv'){
    if(filename!='')filename = filename.replace(/(\.)(xml)$/i,'_$2');
-   filename += "_converted_."+uploaded_file_convert_to;
+   filename += "_converted_."+typeOut;
   }
   counter_convert++;
-  downloadAction(filename, text);
+  downloadAction(filename, text, typeOut);
 }
 function download_sourcecode(){
   var filename = '';
   var text = document.getElementsByTagName('html')[0].outerHTML;
-  uploaded_file_convert_to='html'
   var filename_add = '';
   if (typeof document.querySelector !== "undefined") { 
       var jsonld = JSON.parse(document.querySelector('script[type="application/ld+json"]').innerText);
       if (typeof jsonld !== "undefined" && jsonld.softwareVersion !== "undefined" && jsonld.dateModified !== "undefined" ) filename_add = " v"+jsonld.softwareVersion.replace(/\./,'-')+" "+jsonld.dateModified.replace(/\./,'-');
   }
-  filename = 'converter phonebook fritzboxxml csv '+filename_add+'.'+uploaded_file_convert_to;
+  filename = 'converter phonebook fritzboxxml csv '+filename_add+'.html';
   text="<!DOCTYPE html>"+text;
-  downloadAction(filename,text);
+  downloadAction(filename,text,'html');
 }
-function downloadAction(filename, text) {
+function downloadAction(filename, text, typeOut) {
   if(text==undefined || text=="undefined" || text==false || text==""){alert("Error");return;}
   var element = document.createElement('a');
-  if     (uploaded_file_convert_to=='csv') element.setAttribute('href', 'data:text/csv;charset=utf-8,'        + encodeURIComponent(text));
-  else if(uploaded_file_convert_to=='xml') element.setAttribute('href', 'data:application/xml;charset=utf-8,' + encodeURIComponent(text));
-  else if(uploaded_file_convert_to=='html')element.setAttribute('href', 'data:text/html;charset=utf-8,'       + encodeURIComponent(text));
+  if     (typeOut=='csv') element.setAttribute('href', 'data:text/csv;charset=utf-8,'        + encodeURIComponent(text));
+  else if(typeOut=='xml') element.setAttribute('href', 'data:application/xml;charset=utf-8,' + encodeURIComponent(text));
+  else if(typeOut=='html')element.setAttribute('href', 'data:text/html;charset=utf-8,'       + encodeURIComponent(text));
   else                                     element.setAttribute('href', 'data:text/plain;charset=utf-8,'      + encodeURIComponent(text));
   element.setAttribute('download', filename);
 
@@ -835,10 +832,6 @@ function get_filetype_by_ext(filename){
   var filetype_by_ext = '';
   if (t.length>0) filetype_by_ext = t[t.length-1];
   return filetype_by_ext;
-}
-
-function ask__xml_convert_to(filename) {
-  uploaded_file_convert_to='csv'; return convert_to_csv();
 }
 
 function f_merge__appendfile(format,origin,add,filename){
@@ -1009,8 +1002,8 @@ function readMultipleFiles(e) {
 
               if(!mergeFiles){ //single file(s)
                   document.getElementById(textfield_id).value = contents;
-                  if(type_from=="xml"){ uploaded_file_convert_from='xml'; prepare_and_download( ask__xml_convert_to(filename) , filename);}
-                  if(type_from=="csv"){ uploaded_file_convert_from='csv'; uploaded_file_convert_to='xml'; prepare_and_download( convert_csv_to_xml() , filename); }
+                  if(type_from=="xml") prepare_and_download( convert_to_csv(filename) , filename, 'csv');
+                  if(type_from=="csv") prepare_and_download( convert_to_xml() , filename, 'xml');
               }
               if(mergeFiles){ //merged files: append content
                 if(type_from__forced_to!='' && type_from!=type_from__forced_to){  //nothing to do; //not needed: ignoredFiles+=" "+filename+" ,";
@@ -1037,8 +1030,8 @@ function readMultipleFiles(e) {
 }
 
 function reader_finish__andDownloadMergedFile(filename){
-   if(counterFiletypes["xml"]>0){ uploaded_file_convert_from='xml'; prepare_and_download( ask__xml_convert_to(filename) , filename);}
-   if(counterFiletypes["csv"]>0){ uploaded_file_convert_from='csv'; uploaded_file_convert_to='xml'; prepare_and_download( convert_csv_to_xml() , filename); }
+   if(counterFiletypes["xml"]>0) prepare_and_download( convert_to_csv(filename) , filename , 'csv');
+   if(counterFiletypes["csv"]>0) prepare_and_download( convert_to_xml() , filename , 'xml');
 }
 
 
