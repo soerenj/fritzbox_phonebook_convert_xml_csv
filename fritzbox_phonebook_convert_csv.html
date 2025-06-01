@@ -884,9 +884,6 @@ function is_maybe_headline__fulltext(a){ //for .csv  //alle lines in one string
 var mergeFiles = false;
 var files_counted = 0;
 var files_counter = 0;
-var counterFiletypes = Array();
-counterFiletypes["xml"] = 0;
-counterFiletypes["csv"] = 0;
   
 function readMultipleFiles(e) {
   //translation
@@ -905,6 +902,7 @@ function readMultipleFiles(e) {
   var text__merge_to_single_phonebook="Merge to a single merged phonebook?"; //\n(only with the same file-format possible)
   if(selectedLanguage=="de")text__merge_to_single_phonebook="Zusammenfügen zu einen einzelnen Telefonbuch?";
   
+  var counterFiletypes = Array();
   counterFiletypes["xml"]   = 0;
   counterFiletypes["csv"]   = 0;
   counterFiletypes["other"] = 0;
@@ -933,8 +931,8 @@ function readMultipleFiles(e) {
     if ( filetype_by_ext!='' || e.target.fileType!='' ){ //fileType no set at this state. ( could be deleted )
         if( filetype_by_ext=='xml' || e.target.fileType=='application/xml' || e.target.fileType=='text/xml' ) counterFiletypes["xml"]++;
         else if( filetype_by_ext=='csv' || e.target.fileType=='text/csv' ) counterFiletypes["csv"]++;
-        else { counterFiletypes["others"]++; unknownFiles+=file.name+" , "}
-    }else { counterFiletypes["others"]++; unknownFiles+=file.name+" , " }
+        else { counterFiletypes["other"]++; unknownFiles+=file.name+" , "}
+    }else { counterFiletypes["other"]++; unknownFiles+=file.name+" , " }
   }
   var ignore_unknown_filetypes=false;
   var type_from__forced_to='';
@@ -942,24 +940,20 @@ function readMultipleFiles(e) {
       var text_a=''; 
       if(counterFiletypes["xml"]>0) text_a+=text__found+" : "+counterFiletypes["xml"]+" .xml "+text__files+".\n";
       if(counterFiletypes["csv"]>0) text_a+=text__found+" : "+counterFiletypes["csv"]+" .csv "+text__files+".\n";
-      if(counterFiletypes["others"]>0){
-        let unkF = unknownFiles.substring(0,60);
-        if(unknownFiles.length>60) unkF+=" .... (and more) ";
-        // Ask: should unknown file-types ignored?:
-        if( ! confirm(text_a + text__found+ " : "+ counterFiletypes["others"] +" " + text__unknown_filetypes+": \n"+ unkF +"\n" + text__aks_about_unknown_files) ) ignore_unknown_filetypes=true;
+      if(counterFiletypes["other"]>0){
+         var unkF = unknownFiles.substring(0,60);
+         if(unknownFiles.length>60) unkF+=" .... (and more) ";
+         if( ! confirm(text_a + text__found+ " : "+ counterFiletypes["other"] +" " + text__unknown_filetypes+": \n"+ unkF +"\n" + text__aks_about_unknown_files) ) ignore_unknown_filetypes=true;
       }
-      if(counterFiletypes["xml"]>0 && counterFiletypes["csv"]>0 && mergeFiles){
-         // Ask: what file-type should be converted?:
+      if(counterFiletypes["xml"]>0 && counterFiletypes["csv"]>0 && mergeFiles){  //which file-type
          if( confirm(text__convert_the_xml_files) )
          {      type_from__forced_to='xml'; ignoredFiles+=" "+text__all_the+" .csv type "+text__files+" , "; }
          else { type_from__forced_to='csv'; ignoredFiles+=" "+text__all_the+" .xml type "+text__files+" , "; }
       }
   }
-  //reset counter
-  counterFiletypes["xml"]    = 0;
-  counterFiletypes["csv"]    = 0;
-  counterFiletypes["others"] = 0;
+
   
+  var counter__merged_append=0;
   for(i=0;i<files.length;i++){
       var file = files[i];
       var reader = new FileReader();
@@ -1005,11 +999,11 @@ function readMultipleFiles(e) {
                   if(type_from=="xml") prepare_and_download( convert_to_csv(filename) , filename, 'csv');
                   if(type_from=="csv") prepare_and_download( convert_to_xml() , filename, 'xml');
               }
-              if(mergeFiles){ //merged files: append content
-                if(type_from__forced_to!='' && type_from!=type_from__forced_to){  //nothing to do; //not needed: ignoredFiles+=" "+filename+" ,";
-                }else{
-                  if(counterFiletypes[type_from]==0)  document.getElementById(textfield_id).value= '';
-                  counterFiletypes[type_from]++;
+              if(mergeFiles){ //append content
+                if(type_from!='')
+                if(type_from__forced_to=='' || type_from==type_from__forced_to){
+                  if(counter__merged_append==0)  document.getElementById(textfield_id).value= '';
+                  counter__merged_append++;
                   document.getElementById(textfield_id).value = f_merge__appendfile(type_from,document.getElementById(textfield_id).value,contents,filename);
                 }
               }
@@ -1019,7 +1013,10 @@ function readMultipleFiles(e) {
            if(files_counted==files_counter){ //last file => start convert
               if(type_from=='')filename='';
               else filename+="_merged_";
-              reader_finish__andDownloadMergedFile(filename);
+              if(type_from__forced_to=="xml" || (type_from__forced_to=='' && type_from=="xml") )
+                 prepare_and_download( convert_to_csv(filename) , filename , 'csv');
+              if(type_from__forced_to=="csv" || (type_from__forced_to=='' && type_from=="csv") )
+                 prepare_and_download( convert_to_xml() , filename , 'xml');
               if(ignoredFiles!='') alert(text__these_files_were_ignored+": "+ignoredFiles);
             }
           }
@@ -1028,12 +1025,6 @@ function readMultipleFiles(e) {
       reader.readAsText(file);
   }
 }
-
-function reader_finish__andDownloadMergedFile(filename){
-   if(counterFiletypes["xml"]>0) prepare_and_download( convert_to_csv(filename) , filename , 'csv');
-   if(counterFiletypes["csv"]>0) prepare_and_download( convert_to_xml() , filename , 'xml');
-}
-
 
 document.getElementById('file-input_auto-detect')
   .addEventListener('change', readMultipleFiles, false);
@@ -1069,10 +1060,10 @@ function show_advanced_view(state){
 }
 
 //drag and drop:
-let dropArea = document.getElementById('file-input_auto-detect');
-let dropArea_CloseButton = document.getElementById('file-input_auto-detect_close_button');
-let dropAreaText = document.getElementById('file-input_auto-detect_text_drophere');
-let dropAreaDetect = document.getElementsByTagName('body')[0];
+var dropArea = document.getElementById('file-input_auto-detect');
+var dropArea_CloseButton = document.getElementById('file-input_auto-detect_close_button');
+var dropAreaText = document.getElementById('file-input_auto-detect_text_drophere');
+var dropAreaDetect = document.getElementsByTagName('body')[0];
 
 function preventDefaults (e) {
   e.preventDefault()
