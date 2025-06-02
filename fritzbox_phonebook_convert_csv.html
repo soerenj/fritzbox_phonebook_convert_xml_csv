@@ -39,8 +39,8 @@
 	"name": "convert phonebook Fritzbox",
 	"description": "convert phonebook files from router Fritzbox .xml to .csv and backwards",
 	"programmingLanguage": "javascript",
-	"dateModified": "2025-06-01",
-	"softwareVersion": "0.311",
+	"dateModified": "2025-06-02",
+	"softwareVersion": "0.312",
 	"inLanguage": ["en", "de"],
     "mainEntityOfPage":"https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html",
 	"url":"https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html",
@@ -49,21 +49,10 @@
 	"sameAs": "https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html"
 }
 </script>
-<style>  input{ cursor: pointer } .advanced_view{ display:none; } textarea{ min-width:500pt;width:80%;height:100pt;} @media (min-height:800pt){ textarea{ height:200pt;} } details summary { color:LinkText;} details summary:hover, details summary :hover, a .en:hover, a .de :hover{ text-decoration:underline; cursor:pointer; color:#000; } details div { margin-left: 12pt; } a:hover span{ text-decoration:underline; }
-.drop-area_highlight, .drop-area_text_highlight  { border-color: purple; width: 90%; min-width:90%; height:90%; min-height:90%; background:rgba(64, 64, 64, 0.5); position:absolute;  top:0px; left:0px; border: 2px dashed #ccc; border-radius: 20pt; margin:5%; font-size: 3em; text-align: center;  padding-top: 25%;} .de{ display:none; } input#setting__xml2__phonenumber_edit_your_countrycode:invalid, input#setting__xml2__phonenumber_edit_your_areacode:invalid {border: medium solid red; } .onlytouchscreen{ display:none; } @media (pointer: coarse){.onlytouchscreen{ display:inline; } } input + label {vertical-align:top;}</style>
-<style>
-@media (pointer: coarse){
-  .onlytouchscreen{ display:inline; }
-  input[type="button"], input[type="file"], a.maybebutton, details summary {  padding: .4em .8em;   background: #e6e6e6;  font-size: 125%;   line-height: 1.5;  margin: 2em;  padding: .5em 1em;  border-radius: .5em;color: black;  cursor: pointer;  border: 1pt solid black;}
-  a:hover, details summary:hover{  outline: none;  background: white;  color: darkblue;  }
-}
-</style>
-</head>
-<body>
 <!--
  /*
- * version: 0.311
- * date: 2025-06-01
+ * version: 0.312
+ * date: 2025-06-02
  *
  * Licence 
  *
@@ -76,6 +65,37 @@
  * (at your option) any later version.
  */
   -->
+<style>
+input{ cursor: pointer } 
+.advanced_view{ display:none; }
+textarea{ min-width:500pt;width:80%;height:100pt;}
+@media (min-height:800pt){ 
+  textarea{ height:200pt;} }
+details summary { color:LinkText;}
+details summary:hover, details summary :hover, a .en:hover, a .de :hover{
+  text-decoration:underline; cursor:pointer; color:#000; }
+details div { margin-left: 12pt; }
+a:hover span{ text-decoration:underline; }
+.drop-area_highlight, .drop-area_text_highlight {
+  border-color: purple; width: 90%; min-width:90%; height:90%; min-height:90%; background:rgba(64, 64, 64, 0.5); position:absolute;  top:0px; left:0px; border: 2px dashed #ccc; border-radius: 20pt; margin:5%; font-size: 3em; text-align: center;  padding-top: 25%;}
+.de{ display:none; }
+input#setting__xml2__phonenumber_edit_your_countrycode:invalid, input#setting__xml2__phonenumber_edit_your_areacode:invalid {
+  border: medium solid red; }
+.onlytouchscreen{ display:none; }
+input + label {vertical-align:top; }
+@media (pointer: coarse){
+  body{ margin: 0.4em;}
+  details > summary > span::before{ content: "▸"; margin-right: 0.2em; }
+  details[open] > summary > span::before{ content: "▾"; }
+  .onlytouchscreen{ display:inline; }
+  input[type="button"], input[type="file"], a.maybebutton, details summary {
+    display:block; padding: .4em .8em;   background: #e6e6e6;  font-size: 125%;   line-height: 1.5;  margin: 2em;  padding: .5em 1em;  border-radius: .5em;color: black;  cursor: pointer;  border: 1pt solid black; }
+  input[type="file"]{ margin: 0.4em; max-width: calc(100% - 3em); } 
+  a:hover, details summary:hover{  outline: none;  background: white;  color: darkblue; }
+}
+</style>
+</head>
+<body>
 <header>
 <!--<img src="img/icon_convert_formats.png" style="float:left;padding:6pt;" />-->
 <span style="float:right"><a href="#en" onClick="changeLanguage('en')" alt="en" hreflang="en" title="change language to english">&#127468&#127463</a> <a href="#de" onClick="changeLanguage('de')" hreflang="de" alt="de" title="wechsel die Sprache zu deutsch / german">&#127465&#127466</a></span>
@@ -288,7 +308,7 @@
     <span lang="en" class="en">That is the shown new Phonebook-Name in the Fritzbox. This is not the filename.</span>
     <span lang="de" class="de">Das ist der neue Telefonbuch-Namen in der Fritzbox selbst. Es ist nicht der Datei-Name.</span>
   </span>
-  <button type="button" onClick="document.getElementById(last_uploaded_file__fieldid).dispatchEvent(new Event('change'));" id="convert_again_file" style="display:none;margin-top:10pt;margin-bottom:10pt;" value="Convert the same file again" ><span lang="en" class="en">Convert the same file again</span><span lang="de" class="de">Konvertiere die gleiche Datei nochmal</span></button>
+  <button type="button" onClick="document.getElementById(last_uploaded_file__fieldid).dispatchEvent(new Event('change'));" id="convert_again_file" style="display:none;margin-top:10pt;margin-bottom:10pt;" value="Convert the same file again" ><span lang="en" class="en">Convert the same file(s) again</span><span lang="de" class="de">Konvertiere die gleiche Datei(en) nochmal</span></button>
     <details>
    <summary>
       <span lang="en" class="en">unimportant setting: Select file dialog - type detection</span>
