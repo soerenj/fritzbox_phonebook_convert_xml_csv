@@ -114,8 +114,8 @@ input + label {vertical-align:top; }
 <br />
 <span style="color:#999999"><i><span lang="en" class="en">Allowed</span><span lang="de" class="de">Erlaubt</span>: Fritzbox .xml , .csv</i></span><br>
 -->
-<span id="file-input_auto-detect_text_drophere" style="display:none">Drop your file here</span>
-<input type="file" multiple id="file-input_auto-detect" autocomplete="off" style="display:none" /><a href="#" id="file-input_auto-detect_close_button" style="display:none;background: white;  font-size: 2em;  text-align: right;  top: 10%;  position: absolute;  padding: 0.5em;  right: 10%; border-radius:20pt;" onClick="unhighlight();return false;" class="maybebutton">Close 🗙</a><br>
+<span id="file-input_drag-n-drop_text_drophere" style="display:none">Drop your file here</span>
+<input type="file" multiple id="file-input_drag-n-drop" autocomplete="off" style="display:none" /><a href="#" id="file-input_drag-n-drop_close_button" style="display:none;background: white;  font-size: 2em;  text-align: right;  top: 10%;  position: absolute;  padding: 0.5em;  right: 10%; border-radius:20pt;" onClick="unhighlight();return false;" class="maybebutton">Close 🗙</a><br>
 </div>
 <p>
 <label for="file-input_xml" id="label_file-input_xml">
@@ -346,7 +346,7 @@ input + label {vertical-align:top; }
 </br>
 <script language="JavaScript">
 <!--
-var last_uploaded_file__fieldid='file-input_auto-detect';
+var last_uploaded_file__fieldid='file-input_drag-n-drop';
 var counter_convert = 0;
 var show_advanced_view__state = false;
 var new_phonebook_name = 'convertedPhonebook';
@@ -388,7 +388,7 @@ for(i=0;i<pre_numbers__with_country_codes__and_mobile.length;i++){
 }
 if(detected_default_langcountrycode!='')e.value=detected_default_langcountrycode;
 
-if(document.getElementById('file-input_auto-detect').value!='' ||
+if(document.getElementById('file-input_drag-n-drop').value!='' ||
    document.getElementById('file-input_xml').value!='' ||
    document.getElementById('file-input_format2').value!='')document.getElementById('file-input_reset').style.display='block';
 document.getElementById('new_phonebook_name').value=new_phonebook_name;
@@ -396,7 +396,7 @@ var file_upload__accepted_filetype = ".xml,.csv,text/csv,application/xml,text/xm
 var file_upload__accepted_filetype__xml = ".xml,application/xml,text/xml";
 var file_upload__accepted_filetype__format2 = ".csv,text/csv";
 var e =null;
-e = document.getElementById('file-input_auto-detect'); if(e.accept!=undefined)e.accept=file_upload__accepted_filetype;
+e = document.getElementById('file-input_drag-n-drop'); if(e.accept!=undefined)e.accept=file_upload__accepted_filetype;
 e = document.getElementById('file-input_xml'); if(e.accept!=undefined)e.accept=file_upload__accepted_filetype__xml;
 e = document.getElementById('file-input_format2'); if(e.accept!=undefined)e.accept=file_upload__accepted_filetype__format2;
 if(setting__xml2csv__just_one_phonenumer_each==1) document.getElementById('setting__xml2csv__just_one_phonenumer_each_text__single_row').checked=true;
@@ -405,18 +405,17 @@ if(setting__xml2csv__just_one_phonenumer_each==3) document.getElementById('setti
 if(setting__csv2xml__merge_samename==0) document.getElementById('setting__csv2xml__merge_samename_checkbox').checked=false;
 if(setting__csv2xml__merge_samename==1) document.getElementById('setting__csv2xml__merge_samename_checkbox').checked=true;
 
-
 function reset_to_default(){
  document.getElementById('phonebook_xml').value = document.getElementById('phonebook_xml').defaultValue;
  document.getElementById('phonebook_csv').value = document.getElementById('phonebook_csv').defaultValue;
- document.getElementById('file-input_auto-detect').value='';
+ document.getElementById('file-input_drag-n-drop').value='';
  document.getElementById('file-input_xml').value='';
  document.getElementById('file-input_format2').value='';
  document.getElementById('ready').style.display="none";
 }
 
 function showOnlySupportedChange(v){
-  e = document.getElementById('file-input_auto-detect');if(!v) e.accept=''; else e.accept=file_upload__accepted_filetype;
+  e = document.getElementById('file-input_drag-n-drop');if(!v) e.accept=''; else e.accept=file_upload__accepted_filetype;
   e = document.getElementById('file-input_xml');if(!v) e.accept=''; else e.accept=file_upload__accepted_filetype__xml;
   e = document.getElementById('file-input_format2');if(!v) e.accept=''; else e.accept=file_upload__accepted_filetype__format2;
 }
@@ -977,10 +976,10 @@ function readMultipleFiles(e) {
   for(i=0;i<files.length;i++){
       var file = files[i];
       var reader = new FileReader();
-      if(e.target.id=='file-input_auto-detect' || e.target.id=='file-input_xml' || e.target.id=='file-input_format2'){
+      //if(e.target.id=='file-input_drag-n-drop' || e.target.id=='file-input_xml' || e.target.id=='file-input_format2'){
         last_uploaded_file__fieldid = e.target.id;
-        if(e.target.id=='file-input_auto-detect') document.getElementById('file-input_auto-detect').style.display='block';
-        else document.getElementById('file-input_auto-detect').style.display='none';
+        if(e.target.id=='file-input_drag-n-drop') document.getElementById('file-input_drag-n-drop').style.display='block';
+        else document.getElementById('file-input_drag-n-drop').style.display='none';
         reader.fileName = file.name;
         reader.fileType = file['type'];
         reader.onload = function(e) {
@@ -1040,13 +1039,13 @@ function readMultipleFiles(e) {
               if(ignoredFiles!='') alert(text__these_files_were_ignored+": "+ignoredFiles);
             }
           }
-        };
-      }
+        //};
+      }//end for
       reader.readAsText(file);
   }
 }
 
-document.getElementById('file-input_auto-detect')
+document.getElementById('file-input_drag-n-drop')
   .addEventListener('change', readMultipleFiles, false);
 document.getElementById('file-input_xml')
   .addEventListener('change', readMultipleFiles, false);
@@ -1054,7 +1053,7 @@ document.getElementById('file-input_format2')
   .addEventListener('change', readMultipleFiles, false);
 
 
-//document.getElementById('file-input_auto-detect').value='';
+//document.getElementById('file-input_drag-n-drop').value='';
 //reset_to_default();
 
 function show_advanced_view(state){
@@ -1073,16 +1072,16 @@ function show_advanced_view(state){
    show_advanced_view__state = false;
    document.getElementById("show_advanced_view_link_wrapper").style.display='';
    document.getElementById("show_advanced_view_link_link_close").style.display='none';
-   if(document.getElementById('file-input_auto-detect').value!='' || 
+   if(document.getElementById('file-input_drag-n-drop').value!='' || 
       document.getElementById('file-input_xml').value!='' || 
       document.getElementById('file-input_format2').value!='') document.getElementById('file-input_reset').style.display='block';
  }
 }
 
 //drag and drop:
-var dropArea = document.getElementById('file-input_auto-detect');
-var dropArea_CloseButton = document.getElementById('file-input_auto-detect_close_button');
-var dropAreaText = document.getElementById('file-input_auto-detect_text_drophere');
+var dropArea = document.getElementById('file-input_drag-n-drop');
+var dropArea_CloseButton = document.getElementById('file-input_drag-n-drop_close_button');
+var dropAreaText = document.getElementById('file-input_drag-n-drop_text_drophere');
 var dropAreaDetect = document.getElementsByTagName('body')[0];
 
 function preventDefaults (e) {
@@ -1091,7 +1090,7 @@ function preventDefaults (e) {
 }
 
 function highlight(e) {
-  document.getElementById('file-input_auto-detect').style.display='block';
+  document.getElementById('file-input_drag-n-drop').style.display='block';
   dropArea.classList.add('drop-area_highlight');
   dropAreaText.classList.add('drop-area_text_highlight');
   dropAreaText.style.display='block';
