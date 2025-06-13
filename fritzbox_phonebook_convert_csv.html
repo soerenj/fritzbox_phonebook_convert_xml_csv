@@ -39,8 +39,8 @@
 	"name": "convert phonebook Fritzbox",
 	"description": "convert phonebook files from router Fritzbox .xml to .csv and backwards",
 	"programmingLanguage": "javascript",
-	"dateModified": "2025-06-06",
-	"softwareVersion": "0.313",
+	"dateModified": "2025-06-11",
+	"softwareVersion": "0.32",
 	"inLanguage": ["en", "de"],
     "mainEntityOfPage":"https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html",
 	"url":"https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html",
@@ -51,8 +51,8 @@
 </script>
 <!--
  /*
- * version: 0.313
- * date: 2025-06-06
+ * version: 0.32
+ * date: 2025-06-11
  *
  * Licence 
  *
@@ -223,7 +223,7 @@ input + label {vertical-align:top; }
 <textarea id="error_logs" style="display:none" class=""></textarea>
 
 <div>
- <details>
+ <details id="settings_details_container">
   <summary>
    <span lang="en" class="en" >⚙ Settings</span>
    <span lang="de" class="de">⚙ Einstellungen</span>
@@ -331,17 +331,46 @@ input + label {vertical-align:top; }
     <span lang="en" class="en">That is the shown new Phonebook-Name in the Fritzbox. This is not the filename.</span>
     <span lang="de" class="de">Das ist der neue Telefonbuch-Namen in der Fritzbox selbst. Es ist nicht der Datei-Name.</span>
   </span>
-  <button type="button" onClick="document.getElementById(last_uploaded_file__fieldid).dispatchEvent(new Event('change'));" id="convert_again_file" style="display:none;margin-top:10pt;margin-bottom:10pt;" value="Convert the same file again" ><span lang="en" class="en">Convert the same file(s) again</span><span lang="de" class="de">Konvertiere die gleiche Datei(en) nochmal</span></button>
-    <details>
+  <div style="margin-left:0;">
+  <span lang="en" class="en">More settings (mostly not needed): </span>
+  <span lang="de" class="de">Weitere Einstellungen (meistens nicht nötig): </span>
+  <a name="settings_charset_set_details_container"></a>
+  <details id="settings_charset_set_details_container">
+  <summary>
+    <span lang="en" class="en">Charset: </span>
+    <span lang="de" class="de">Zeichensatz (engl. charset):</span>
+    </summary>
+  <fieldset>
+  <select id="settings_charset_set" onChange="var e=document.getElementById('settings_charset_set_customtext'); if(this.value=='CUSTOMTEXT')e.style.display='';else e.style.display='none';" autocomplete="off">
+    <option value="" selected>UTF-8 (default)</option>
+    <option value="ISO-8859-1">ISO-8859-1</option>
+    <option value="ISO-8859-2">ISO-8859-2</option>
+    <option value="ISO-8859-15">ISO-8859-15</option>
+    <option value="windows-1252">windows-1252</option>
+    <option value="ISO-8859-14">ISO-8859-14</option>
+    <option value="CUSTOMTEXT">custom text</option>
+  </select>
+  <input type="text" id="settings_charset_set_customtext" placeholder="example: ISO-8859-14" style="display:none;" />
+  <span style="color:#999;">
+    <span lang="en" class="en">If you have problems with special characters (at csv &rArr; xml). Try to set here your charset.<br/>
+    Do not mix: Please do not select multiple files ( or merge ) at the same time with different charset.</span>
+    <span lang="de" class="de">Bei Problemen mit Umlauten oder Sonderzeichen (bei csv &rArr; xml), versuche einen anderen Zeichensatz. <br>
+    Nicht mischen: Bitte nicht mehrere Dateien gleichzeitig auswählen (oder zusammenfügen) die verschiende Zeichensatz haben. </span>
+  </span>
+  </fieldset>
+  </details>
+  <details>
    <summary>
-      <span lang="en" class="en">unimportant setting: Select file dialog - type detection</span>
-      <span lang="de" class="de">unwichtige Einstellung: Datei auswählen - Datei Type erkennung</span>
+      <span lang="en" class="en">Select file dialog: type detection</span>
+      <span lang="de" class="de">Datei auswählen Fenster: Datei Type erkennung</span>
    </summary>
   <fieldset >
+    <!--
     <legend>
       <span lang="en" class="en">Select file dialog</span>
       <span lang="de" class="de">Datei auswählen</span>
     </legend>
+    -->
     <input type="checkbox" onChange="showOnlySupportedChange(this.value)" id="setting__upload__filetype_only_accepted" checked autocomplete="off">
     <label for="setting__upload__filetype_only_accepted">
       <span lang="en" class="en">Show only supported files (.xml / .csv / ~ ) <span style="color:#999">( only these are selectable in file upload window/dialog in browser )</span></span>
@@ -358,6 +387,11 @@ input + label {vertical-align:top; }
     </label>
   </fieldset>
   </details>
+  </div>
+  <button type="button" onClick="document.getElementById(last_uploaded_file__fieldid).dispatchEvent(new Event('change'));" id="convert_again_file" style="display:none;margin-top:10pt;margin-bottom:10pt;" value="Convert the same file again" >
+    <span lang="en" class="en">Convert the same file(s) again</span>
+    <span lang="de" class="de">Konvertiere die gleiche Datei(en) nochmal</span>
+  </button>
   <br>
   </div>
   </fieldset>
@@ -560,7 +594,7 @@ function sanitize_personname(person,inkluding_quotes){
     if(tmp.length>0) person = tmp;
   }
   person = person.replace(/^\s+|\s+$/gm,'');        //trim spaces (again)
-  return person;
+  return person.trim();
 }
 
 
@@ -666,7 +700,7 @@ function convert_to_xml(){
       if(type!='')      add+=' type="'+type+'"';
       if(quickDial!='') add+=' quickdial="'+quickDial+'"';
       if(vanity!='')    add+=' vanity="'+vanity+'"';
-      numbersOut += '<number'+add+'>'+sanitize_personname(phone)+'</number>\n';
+      numbersOut += '<number'+add+'>'+sanitize_personname(phone)+'</number>\n'; 
       numbersOutCounter++;
           //old:     //'+prio+' //moved to late (in case of merged entrys)
       
@@ -705,7 +739,10 @@ function download_one_file_ask(){
   if (confirm('Download text in .csv window?')) { prepare_and_download(document.getElementById('phonebook_csv').value,'','csv'); return; }
 }
 function prepare_and_download(text,filename,typeOut) {
-  if(text==undefined || text==null || text==false || text==""){ alert("Finish. End. No Output. Nothing to output."); return;}
+  if(text==undefined || text==null || text==false || text==""){
+    if(selectedLanguage=="de") alert("Fertig. Ende. Keine Ausgabe. Nicht zum Anzeigen.");
+    else                       alert("Finish. End. No Output. Nothing to output.");
+    return;}
   if(filename == undefined || filename=='') filename='';
   if(filename=='') filename='phonebook_for_fritzbox';
   if(typeOut=='xml'){
@@ -946,6 +983,8 @@ function readMultipleFiles(e) {
   var text__merge_to_single_phonebook="Merge to a single merged phonebook?"; //\n(only with the same file-format possible)
   if(selectedLanguage=="de")text__merge_to_single_phonebook="Zusammenfügen zu einen einzelnen Telefonbuch?";
   
+  var settings_charset_set=document.getElementById('settings_charset_set').value.toUpperCase();
+  if(settings_charset_set=="CUSTOMTEXT") settings_charset_set=document.getElementById('settings_charset_set_customtext').value.toUpperCase();
   var counterFiletypes = Array();
   counterFiletypes["xml"]   = 0;
   counterFiletypes["csv"]   = 0;
@@ -1066,7 +1105,10 @@ function readMultipleFiles(e) {
           }
         //};
       }//end for
-      reader.readAsText(file);
+      if( settings_charset_set!='' &&
+          (type_from__forced_to=="csv" || counterFiletypes["csv"]>0))
+           reader.readAsText(file,settings_charset_set);
+      else reader.readAsText(file);
   }
 }
 
