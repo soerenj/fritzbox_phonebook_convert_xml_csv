@@ -88,6 +88,8 @@ textarea{ width:100%;height:220pt;}
   .select_file_button_arrow_rl{ display:none; }
   .select_file_button_arrow_ud{ display:inline; }
   }
+table.border_table_grew { border: solid 1pt #999; }
+table.border_table_grew td { border: solid 1pt #999; padding: 0.2em;}
 details summary { color:LinkText;}
 details summary:hover, details summary :hover, a .en:hover, a .de :hover{
   text-decoration:underline; cursor:pointer; color:#000; }
@@ -100,6 +102,10 @@ input#setting__xml2__phonenumber_edit_your_countrycode:invalid, input#setting__x
   border: medium solid red; }
 .onlytouchscreen{ display:none; }
 input + label {vertical-align:top; }
+#setting__csv2xml__headlines_to_detect p input{ width:80%;}
+#setting__csv2xml__headlines_to_detect p { margin-top:0.2em; margin-bottom:0.5em;}
+#setting__csv2xml__headlines_to_detect .headl_sel_fromlastfile { opacity: 0.5; display:block; }
+#setting__csv2xml__headlines_to_detect .opacityfull { opacity: 1; }
 @media (pointer: coarse){
   body{ margin: 0.4em;}
   details > summary > span::before{ content: "▸"; margin-right: 0.2em; }
@@ -279,15 +285,15 @@ input + label {vertical-align:top; }
     <p style="margin: 0pt;"><input type="radio" autocomplete="off" id="setting__xml2csv__just_one_phonenumer_each_text__single_row" name="setting__xml2csv__just_one_phonenumer_each_text" value="1" autocomplete="off" onChange="setting__xml2csv__just_one_phonenumer_each=this.value" /> <label for="setting__xml2csv__just_one_phonenumer_each_text__single_row">
     <span lang="en" class="en">Each table-row can have multiple phone-numbers (= multiple columns)</span>
     <span lang="de" class="de">Jede Tabellen-Zeile kann mehrere Telefon-Nummern enthalten (=mehrere Spalten)</span>
-    <br /><div style="margin-left:30pt;color:#999">Example output:<br/>Person A, +4940-1234, +4940-567</div></label></p>
+    <br /><div style="margin-left:30pt;color:#999">Example output:<br/><!--Person A, +4940-1234, +4940-567-->        <table class="border_table_grew"><tr><td>name</td><td>phone</td><td>(maybe more phones following...)</td></tr><tr><td>Person A</td><td>+4940-1234</td><td>+4940-567</td><td>+4940-568</td></tr></table></div></label></p>
     <p style="margin: 0pt;"><input type="radio" autocomplete="off" id="setting__xml2csv__just_one_phonenumer_each_text__multiple_rows" name="setting__xml2csv__just_one_phonenumer_each_text" value="2" autocomplete="off" onChange="setting__xml2csv__just_one_phonenumer_each=this.value" /> <label for="setting__xml2csv__just_one_phonenumer_each_text__multiple_rows">
     <span lang="en" class="en">Each table-row has only a single phone-number (per row )</span>
     <span lang="de" class="de">Jede Tabellen-Zeile darf nur eine einzelene Telefon-Nummer enthalten (je Zeile)</span>
-    <br /><div style="margin-left:30pt;color:#999">Example output:<br/>Person A, +4940-1234 <br/ >Person A, +4940-567</div><!--<s><span style="color:#999">Going back with this Result data (= from xml to csv): Converting backward currently can't merge the contacts to a single entry ( <i>=you will have too much entry in your phonebook</i>).</span></s>--></label></p>
+    <br /><div style="margin-left:30pt;color:#999">Example output:<br/><table class="border_table_grew"><tr><td>name</td><td>phone</td></tr><tr><td>Person A</td><td>+4940-1234</td></tr><tr><td>Person A</td><td>+4940-567</td></tr></table><!--Person A, +4940-1234 <br/ >Person A, +4940-567--></div><!--<s><span style="color:#999">Going back with this Result data (= from xml to csv): Converting backward currently can't merge the contacts to a single entry ( <i>=you will have too much entry in your phonebook</i>).</span></s>--></label></p>
     <p style="margin: 0pt;"><input type="radio" autocomplete="off" id="setting__xml2csv__just_one_phonenumer_each_text__multiple_rows__with_type" name="setting__xml2csv__just_one_phonenumer_each_text" value="3" autocomplete="off" onChange="setting__xml2csv__just_one_phonenumer_each=this.value" /> <label for="setting__xml2csv__just_one_phonenumer_each_text__multiple_rows__with_type">
     <span lang="en" class="en">Each table-row has only a single phone-number (per row ) and has addational data: phone type-categorie (=mobile,privat,work,work_fax), priority (=imported person), email-adress, addational quick-dial and telephone book search-Number("Vanity")</span>
     <span lang="de" class="de">Jede Tabellen-Zeile darf nur eine einzelne Telefon-Nummer enthalten (je Zeile) und hat zusätzlich: Telefon Type-Kategorie (=mobile,privat,work,work_fax), Priorität (=wichtige Person), Email-adresse, sowie Kurzwahltaste und Telefonbuchsuche-Zahl("Vanity")</span>
-    <br /><div style="margin-left:30pt;color:#999">Example output:<br/>Person A, +4940-1234, mobile, 1, mail@example.com <br/ >Person A, +4940-567, home</div>
+    <br /><div style="margin-left:30pt;color:#999">Example output:<br/><table class="border_table_grew"><tr><td>name</td><td>phone</td><td>mobile/home/work/fax_work</td><td>1 (=for important contact)</td><td>e-mail-adress</td><td>quickdial</td><td>vanity</tr><tr><td>Person A</td><td>+4940-1234</td><td>mobile</td><td>1</td><td>mail@example.com</td></tr><tr><td>Person A</td><td>+4940-567</td><td>home</td></tr></table></div>
     <!--<s><span style="color:#999">Going back with this Result data (= from xml to csv): Converting backward currently can't restore the addational information ( <i>type (mobile/home) and Priority(=important Person)</i>).</span></s>--></label></p>
   </fieldset>
   <fieldset ><legend>xml &lArr; csv (=import to fritzbox)</legend>
@@ -303,7 +309,20 @@ input + label {vertical-align:top; }
      <span lang="de" class="de">Telefon-Nummern mit den selben Namen werden zusammengefasst als ein Eintrag.</span>
      <br>
      <span style="color:#999">Example csv input:<br/>
-      <ul style="margin-top:0;margin-bottom:0;"><li>Person A, +4940-1234, +4940-567</li><li>Person A, +4940-1234 <br/ >Person A, +4940-567</li><li><span style="color:#999"><i> (Headline: name ; phone ; mobile/home/work/fax_work ; 1 (=for important contact) ; e-mail-adress ; quickdial ; vanity )</i><br></span>Person A, +4940-1234, mobile, 1 , mail@example.com <br/ >Person A, +4940-567, home<br/></li></ul>
+      <ul style="margin-top:0;margin-bottom:0;">
+        <li style="margin-bottom:0.5em">
+        <!--Person A, +4940-1234, +4940-567-->
+        <table class="border_table_grew"><tr><td>name</td><td>phone</td><td>(maybe more phones following...)</td></tr><tr><td>Person A</td><td>+4940-1234</td><td>+4940-567</td><td>+4940-568</td></tr></table>
+        </li>
+        <li style="margin-bottom:0.5em">
+        <!--Person A, +4940-1234 <br/ >Person A, +4940-567-->
+        <table class="border_table_grew"><tr><td>name</td><td>phone</td></tr><tr><td>Person A</td><td>+4940-1234</td></tr><tr><td>Person A</td><td>+4940-567</td></tr></table>
+        </li>
+        <li style="margin-bottom:0.5em">
+        <!--<span style="color:#999"><i> (Headline: name ; phone ; mobile/home/work/fax_work ; 1 (=for important contact) ; e-mail-adress ; quickdial ; vanity )</i><br></span>Person A, +4940-1234, mobile, 1 , mail@example.com <br/ >Person A, +4940-567, home<br/>-->
+        <table class="border_table_grew"><tr><td>name</td><td>phone</td><td>mobile/home/work/fax_work</td><td>1 (=for important contact)</td><td>e-mail-adress</td><td>quickdial</td><td>vanity</tr><tr><td>Person A</td><td>+4940-1234</td><td>mobile</td><td>1</td><td>mail@example.com</td></tr><tr><td>Person A</td><td>+4940-567</td><td>home</td></tr></table>
+        </li>
+      </ul>
       <span lang="en" class="en">Note about <em>important person</em> ("<em>prio</em>"): If a single number is <em>prio</em>, all entrys of this person name will be <em>prio</em>.</span>
       <span lang="de" class="de">Anmerkung zu <em>wichtige Personen</em> ("Prio"): Wenn irgendeiner der Einträge einer Person als <em>wichtige Person</em> markiert ist, wird das auch für alle anderen Einträge diese Person übertragen.</span>
      </span> </div></p>
