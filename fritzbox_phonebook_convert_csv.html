@@ -67,10 +67,27 @@
   -->
 <style>
 input{ cursor: pointer } 
-.advanced_view{ display:none; }
-textarea{ min-width:500pt;width:80%;height:100pt;}
+.advanced_view__hide{ display:none; }
+/*textarea{ min-width:500pt;width:80%;height:220pt;}*/
+textarea{ width:100%;height:220pt;}
+#select_file_xml_div{float:left;width:35%;padding-right:5%;padding-left:5%;}
+#select_file_csv_div{float:right;width:35%;padding-left:5%;padding-right:5%;}
+#select_file_buttons_div{float:right;width:10%;padding-left:0%;padding-right:0%;text-align:center;}
+#select_file_buttons_div button{ display:block; margin: 0em 0.5em 0.5em 0em;}
+.select_file_button_arrow_ud{ display:none; }
+@media (min-height:600pt){ 
+  textarea{ height:350pt;} }
 @media (min-height:800pt){ 
-  textarea{ height:200pt;} }
+  textarea{ height:470pt;} }
+@media (min-width:800pt){ 
+  #select_file_and_textarea{ max-width:1500pt;} }
+@media (max-width:700pt){ 
+  #select_file_xml_div, #select_file_csv_div, #select_file_buttons_div{float:none; width:86%; padding:7%;padding:2%;}
+  #select_file_csv_div{ padding-top:5%; }
+  #select_file_buttons_div button{ display:inline-block; }
+  .select_file_button_arrow_rl{ display:none; }
+  .select_file_button_arrow_ud{ display:inline; }
+  }
 details summary { color:LinkText;}
 details summary:hover, details summary :hover, a .en:hover, a .de :hover{
   text-decoration:underline; cursor:pointer; color:#000; }
@@ -88,7 +105,7 @@ input + label {vertical-align:top; }
   details > summary > span::before{ content: "▸"; margin-right: 0.2em; }
   details[open] > summary > span::before{ content: "▾"; }
   .onlytouchscreen{ display:inline; }
-  input[type="button"], input[type="file"], a.maybebutton, details summary {
+  input[type="button"], input[type="file"], a.maybebutton, button, details summary {
     display:block; padding: .4em .8em;   background: #e6e6e6;  font-size: 125%;   line-height: 1.5;  margin: 2em;  padding: .5em 1em;  border-radius: .5em;color: black;  cursor: pointer;  border: 1pt solid black; }
   input[type="file"]{ margin: 0.4em; max-width: calc(100% - 3em); } 
   a:hover, details summary:hover{  outline: none;  background: white;  color: darkblue; }
@@ -149,7 +166,8 @@ input + label {vertical-align:top; }
     <span lang="de" class="de">&blacktriangleright; &nbsp; Text-Fenster anzeigen </span>
   </a>
 </p>
-<div id="select_file_xml_div" class="advanced_view">
+<div id="select_file_and_textarea" class="advanced_view advanced_view__hide">
+<div id="select_file_xml_div">
 <label for="phonebook_xml">From Fritzbox .XML File:</label><br>
 <textarea id="phonebook_xml" autocomplete="off">
 <?xml version="1.0" encoding="utf-8"?>
@@ -174,17 +192,8 @@ input + label {vertical-align:top; }
 </textarea>
 </div>
 
-<!-- ↓↑ ⇓⇑ ⇩⇧ ⟱ ⟰ ⬆⬇ -->
-<div class="advanced_view">
- <br>
- <input type="button" value="convert: ⬇ xml to csv" onclick="convert_to_csv()" />  &nbsp;
- <input type="button" value="Download" title="Download one file" onclick="download_one_file_ask()" />   &nbsp; 
- <input type="button" value="Reset to Test-Values" title="reset to default" onclick="reset_to_default()" />   &nbsp;  
-</div>
-<div id="select_file_xml_csv" class="advanced_view">
-<br/>
-<br><br>
-<label for="phonebook_csv">From .CSV File:</label> <input type="button" value="convert: ⇧ csv to xml" onclick="convert_to_xml()" />   &nbsp;  <br>
+<div id="select_file_csv_div">
+<label for="phonebook_csv">From .CSV File:</label> <br/>
 <textarea id="phonebook_csv" autocomplete="off">name, phone, type, importantPerson, email, quickdial, vanity
 "Person C", "080123456789"
 "Person C", "0801234567890978768"
@@ -194,6 +203,20 @@ input + label {vertical-align:top; }
 "Person E", "+4911111", "work", "1", "test@example.com", 8, 1
 "Person E", "00494933333", "home", "", "test@example.com"
 </textarea>
+<br>
+</div>
+
+<div id="select_file_buttons_div">
+ <br>
+ <button type="button" onclick="convert_to_csv()">convert <span style="font-size:18pt" class="select_file_button_arrow_rl">➡</span><span style="font-size:18pt" class="select_file_button_arrow_ud">⬇</span> xml to csv </button> 
+ <button type="button" onclick="convert_to_xml()" class>convert <span style="font-size:18pt" class="select_file_button_arrow_rl">⬅</span><span style="font-size:18pt" class="select_file_button_arrow_ud">⬆</span> csv to xml</button>
+ <br>
+ <button type="button" title="Download one file" onclick="download_one_file_ask()" >Download</button> 
+ <button type="button" title="reset to default" onclick="reset_to_default()" > 🗙 Reset to Test-Values</button>  
+</div>
+
+<div style="clear:both" ></div>
+<!-- ↓↑ ⇓⇑ ⇩⇧ ⟱ ⟰ ⬆⬇ ⬅➡ ←→-->
 <br>
 </div>
 
@@ -207,7 +230,7 @@ input + label {vertical-align:top; }
   </summary>
   <fieldset><legend>Settings</legend>
   <div>
-  <fieldset ><legend>* &Arr; xml (=import to fritzbox)</legend>
+  <fieldset ><legend>xml &lArr; csv (=import to fritzbox)</legend>
     <!--<span lang="en" class="en">Phone-Number edits:</span>
     <span lang="de" class="de">Telefon-Nummer bearbeiten:</span>-->
     <p style="margin: 0pt;">
@@ -226,7 +249,7 @@ input + label {vertical-align:top; }
     </select>
     </p>
   </fieldset>
-  <fieldset ><legend>xml &Arr; * (=export from fritzbox)</legend>
+  <fieldset ><legend>xml &rArr; csv (=export from fritzbox)</legend>
     <!--<span lang="en" class="en">Phone-Number edits:</span>
     <span lang="de" class="de">Telefon-Nummer bearbeiten:</span>-->
     <p style="margin: 0pt;">
@@ -250,7 +273,7 @@ input + label {vertical-align:top; }
     <span lang="de" class="de" style="color:#999">(wenn sie fehlt) Beispiel: 030 für die Stadt Berlin.</span>
     </p>
   </fieldset>
-  <fieldset ><legend>xml to csv (=export from fritzbox)</legend>
+  <fieldset ><legend>xml &rArr; csv (=export from fritzbox)</legend>
     <span lang="en" class="en">How to handle multiple phone numbers per each Person entry:</span>
     <span lang="de" class="de">Wie mit mehreren Telefon-Nummern je Personen-Eintrag umgegangen werden soll:</span>
     <p style="margin: 0pt;"><input type="radio" autocomplete="off" id="setting__xml2csv__just_one_phonenumer_each_text__single_row" name="setting__xml2csv__just_one_phonenumer_each_text" value="1" autocomplete="off" onChange="setting__xml2csv__just_one_phonenumer_each=this.value" /> <label for="setting__xml2csv__just_one_phonenumer_each_text__single_row">
@@ -267,7 +290,7 @@ input + label {vertical-align:top; }
     <br /><div style="margin-left:30pt;color:#999">Example output:<br/>Person A, +4940-1234, mobile, 1, mail@example.com <br/ >Person A, +4940-567, home</div>
     <!--<s><span style="color:#999">Going back with this Result data (= from xml to csv): Converting backward currently can't restore the addational information ( <i>type (mobile/home) and Priority(=important Person)</i>).</span></s>--></label></p>
   </fieldset>
-  <fieldset ><legend>csv to xml (=import to fritzbox)</legend>
+  <fieldset ><legend>xml &lArr; csv (=import to fritzbox)</legend>
     <span lang="en" class="en">How to handle multiple phone numbers per each Person entry:</span>
     <span lang="de" class="de">Wie mit mehreren Telefon-Nummern je Personen-Eintrag umgegangen werden soll:</span>
     <p style="margin: 0pt;"><input type="checkbox" autocomplete="off" id="setting__csv2xml__merge_samename_checkbox" name="setting__csv2xml__merge_samename" value="1" autocomplete="off" checked onChange="if(this.checked==true)setting__csv2xml__merge_samename=1;else setting__csv2xml__merge_samename=0;" />
@@ -1061,8 +1084,8 @@ document.getElementById('file-input_format2')
 function show_advanced_view(state){
  var e = document.getElementsByClassName('advanced_view');
  for(var i=0;i<e.length;i++){
-  if(state=='show')e[i].style.display='inline-block';
-  if(state=='hide')e[i].style.display='';
+  if(state=='show') e[i].classList.remove('advanced_view__hide');
+  if(state=='hide') e[i].classList.add('advanced_view__hide');
  }
  if(state=='show'){
    show_advanced_view__state = true;
@@ -1127,7 +1150,7 @@ dropAreaDetect.addEventListener('drop', unhighlight, false);
 <div lang="en" class="en" id="sec_adv_en"><h3>Privacy</h3>You Privacy are keept: This Page works just on your computer (or offline). Your Data will stay only on your own local computer. No Cloud, no Server. It is just pure local JavaScript-Code in your Browser. <br><br>You are still unsure, using this?: My Security-Advise:<br><a name="sec_adv_en" />
 <p>Option A:
   <ol>
-    <li>Change to Privat-Mode <small syle="color:#999">( so called inside Firefox)</small> or Incognito-Mode <small syle="color:#999">( called name inside of e.g. Chrome,..)</small> inside your Browser and open again this page. <br>Faster: <a href="sec_adv_en">Click here</a> with right mouse-click and select <em>"open Link in new private window"</em> <span class="onlytouchscreen">/ <em>"open in new private Tab"</em> and click <em>change to Tab</em> (at bottom)</span></li>
+    <li>Change inside your Browser to Privat-Mode <small syle="color:#999">( so called inside Firefox)</small> or Incognito-Mode <small syle="color:#999">( called name inside of e.g. Chrome,..)</small> and open again this page. <br>Faster: <a href="sec_adv_en">Click here</a> with right mouse-click and select <em>"open Link in new private window"</em> <span class="onlytouchscreen">/ <em>"open in new private Tab"</em> and click <em>change to Tab</em> (at bottom)</span></li>
     <li><span class="onlineoffline_state"></span> go offline (= disconnect from Internet )</li>
     <li>Convert your file</li>
     <li>Important last Step: Close <u>ALL</u> Privacy/Incognito-Mode window afterwards, to clean up the whole <em>session</em>.</li>
@@ -1155,7 +1178,7 @@ Diese Seite arbeitet als offline-Programm (reines JavaScript im Browser). Anonym
 <p>
 Option A:
   <ol>
-    <li>Wechseln in den Privat-Modus (<small style="color:#999">so heißt es in Firefox</small>) oder Inkognito-Modus <small style="color:#999">( so heißt es in z.B. Chrome,..)</small> Ihres Internet-Browser und diese Seite erneut öffnen.<br>  Schneller: <a href="#sec_adv_de">Hier klicken</a> mit rechter Maustasten und dann auswählen <span class="onlytouchscreen">(oder lange drücken bei Touchscreens)</span>: <em>"Link in neuem privaten Fenster öffnen"</em> <span class="onlytouchscreen">/ <em>"in neuem privaten Tab öffnen"</em> und klicken auf <em>in Tab wechsel</em> (unten)</span> </li>
+    <li>Wechseln in ihren Internet-Browser in den Privat-Modus <small style="color:#999">(so heißt es in Firefox)</small> oder Inkognito-Modus <small style="color:#999">( so heißt es in z.B. Chrome,..)</small> und diese Seite wieder erneut öffnen.<br>  Schneller: <a href="#sec_adv_de">Hier klicken</a> mit rechter Maustasten und dann auswählen <span class="onlytouchscreen">(oder lange drücken bei Touchscreens)</span>: <em>"Link in neuem privaten Fenster öffnen"</em> <span class="onlytouchscreen">/ <em>"in neuem privaten Tab öffnen"</em> und klicken auf <em>in Tab wechsel</em> (unten)</span> </li>
     <li><span class="onlineoffline_state"></span> gehen Sie offline (= trennen Sie die Verbindung zum Internet)</li>
     <li>wandeln Sie nun Ihre Datei um</li>
     <li>Wichtiger letzter Schritt: Schließen Sie <u>ALLE</u> ihre Privat/Inkognito-Modus Fenster dannach. Nur so kann die ganze sogenannte <i>Sitzung</i> gelöscht, also wirklich beendet werden.</li>
