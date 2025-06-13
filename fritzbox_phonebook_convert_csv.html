@@ -39,8 +39,8 @@
 	"name": "convert phonebook Fritzbox",
 	"description": "convert phonebook files from router Fritzbox .xml to .csv and backwards",
 	"programmingLanguage": "javascript",
-	"dateModified": "2025-06-02",
-	"softwareVersion": "0.312",
+	"dateModified": "2025-06-06",
+	"softwareVersion": "0.313",
 	"inLanguage": ["en", "de"],
     "mainEntityOfPage":"https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html",
 	"url":"https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html",
@@ -51,8 +51,8 @@
 </script>
 <!--
  /*
- * version: 0.312
- * date: 2025-06-02
+ * version: 0.313
+ * date: 2025-06-06
  *
  * Licence 
  *
@@ -370,7 +370,7 @@ var pre_numbers__with_country_codes__and_mobile = [
 var detected_default_langcode='';
 var detected_default_langcountrycode='';
 var e = document.getElementById("setting__2xml__phonenumber_edit_detect_mobile__your_countrycode");
-for(i=0;i<pre_numbers__with_country_codes__and_mobile.length;i++){
+for(var i=0;i<pre_numbers__with_country_codes__and_mobile.length;i++){
  var a=pre_numbers__with_country_codes__and_mobile[i];
  var pattern = "^"+a[1];
  var option = document.createElement("option");
@@ -432,7 +432,7 @@ function convert_to_csv(){
  if(setting__xml2csv__just_one_phonenumer_each==3) out = 'name, phone, type, importantPerson, email, quickdial, vanity\n';
  logError=[];
  var contacts = xmlDoc.getElementsByTagName("contact");
- for(i=0;i<contacts.length;i++)
+ for(var i=0;i<contacts.length;i++)
  {
   //check values
   if(
@@ -456,7 +456,7 @@ function convert_to_csv(){
   var prio = null;
   var hasQuickDial=false;
   var hasVanity   =false;
-  for(j=0;j<telephony.length;j++){
+  for(var j=0;j<telephony.length;j++){
    //telefone_numbers.push (  telephony[i].firstChild.nodeValue );
    //telefone_numbers_type.push (  telephony[i].getAttribute('type') );
    //telefone_numbers_prio.push (  telephony[i].getAttribute('prio') );
@@ -527,7 +527,9 @@ function sanitize_personname(person,inkluding_quotes){
   person = person.replace(/""/gm,"&quot;");       //handle "" (from libre office export of single " possible )
   person = person.replace(/\"/gm,"&quot;");       //handle "
   person = person.replace(/"/gm,"&quot;");        //handle "
-  if(inkluding_quotes){
+  person = person.replace(/</gm,"&gt;");          //handle <
+  person = person.replace(/>/gm,"&lt;");          //handle >
+  if(inkluding_quotes==undefined || inkluding_quotes){
     var tmp = '';
     tmp= person.replace(/^"(.*)"$/gm,'$1'); //trim " (only once at beginn and end)
     if(tmp.length>0) person = tmp;
@@ -573,7 +575,7 @@ function convert_to_xml(){
   var setting__csv2xml__max_per_entry = '';//for testing 1 ; //Fritzbox 7390 does not allow more then 9 number per each entry
   var forceSplitAndJumpOverEntrys=-1;
   var countLoop_detectInfinitLoop=0;
-  for(row=0;row<=contacts.length;row++)
+  for(var row=0;row<=contacts.length;row++)
   {
     countLoop_detectInfinitLoop++; if(countLoop_detectInfinitLoop>10000){ alert("internal programm Error: Loop"); return; }
     if(numbersOut!=''){
@@ -585,7 +587,7 @@ function convert_to_xml(){
         if(lastPersonPrio!='')numbersOut=numbersOut.replace(/<number/g,'<number'+lastPersonPrio);
         out += numbersOut;
         out += '</telephony>\n';
-        if(lastPersonEmail!='') out += '<services nid="'+row+'"><email classifier="private" id="0">'+lastPersonEmail+'</email></services>';
+        if(lastPersonEmail!='') out += '<services nid="'+row+'"><email classifier="private" id="0">'+sanitize_personname(lastPersonEmail)+'</email></services>';
         else out += '<services />';
         out += '<setup />\n<features doorphone="0" /><mod_time></mod_time><uniqueid></uniqueid>\n</contact>\n';
         numbersOut='';lastPersonEmail='';lastPersonPrio=''; numbersOutCounter=0; lastPersonQuickDial=''; lastPersonVanity='';
@@ -607,7 +609,7 @@ function convert_to_xml(){
     person = myTrimQuotes(person);
     var start = 1;
     if(forceSplitAndJumpOverEntrys>=0){ start=forceSplitAndJumpOverEntrys; forceSplitAndJumpOverEntrys=-1;}
-    for(c=start;c<elements.length;c++){ //accept multiple numbers
+    for(var c=start;c<elements.length;c++){ //accept multiple numbers
        
        phone = elements[c];
        var type='';   //is here default type="home" needed?
@@ -641,7 +643,7 @@ function convert_to_xml(){
       if(type!='')      add+=' type="'+type+'"';
       if(quickDial!='') add+=' quickdial="'+quickDial+'"';
       if(vanity!='')    add+=' vanity="'+vanity+'"';
-      numbersOut += '<number'+add+'>'+phone+'</number>\n'; 
+      numbersOut += '<number'+add+'>'+sanitize_personname(phone)+'</number>\n';
       numbersOutCounter++;
           //old:     //'+prio+' //moved to late (in case of merged entrys)
       
@@ -739,7 +741,7 @@ function myTrimQuotes(aa){
 function is_this_a_mobile_phonenumber(phone){
   var your_default_country_code = document.getElementById("setting__2xml__phonenumber_edit_detect_mobile__your_countrycode").value;
   if(phone.length<=5)return false;
-  for(i=0;i<pre_numbers__with_country_codes__and_mobile.length;i++){
+  for(var i=0;i<pre_numbers__with_country_codes__and_mobile.length;i++){
     var a= pre_numbers__with_country_codes__and_mobile[i];
     var pattern = "(";
     if(your_default_country_code==a[2]) pattern+="0|";
@@ -941,7 +943,7 @@ function readMultipleFiles(e) {
   // In case of multiple selected files with different files-types.
   var ignoredFiles = '';
   var unknownFiles = '';
-  for(i=0;i<files.length;i++){
+  for(var i=0;i<files.length;i++){
     var file = files[i];
     var reader = new FileReader();
     reader.fileName = file.name;
@@ -973,7 +975,7 @@ function readMultipleFiles(e) {
 
   
   var counter__merged_append=0;
-  for(i=0;i<files.length;i++){
+  for(var i=0;i<files.length;i++){
       var file = files[i];
       var reader = new FileReader();
       //if(e.target.id=='file-input_drag-n-drop' || e.target.id=='file-input_xml' || e.target.id=='file-input_format2'){
@@ -1058,7 +1060,7 @@ document.getElementById('file-input_format2')
 
 function show_advanced_view(state){
  var e = document.getElementsByClassName('advanced_view');
- for(i=0;i<e.length;i++){
+ for(var i=0;i<e.length;i++){
   if(state=='show')e[i].style.display='inline-block';
   if(state=='hide')e[i].style.display='';
  }
@@ -1300,14 +1302,14 @@ window.addEventListener('hashchange', function(){
 function changeLanguage(newSetLang){
  selectedLanguage=newSetLang;
  var e = document.getElementsByClassName(newSetLang);
-  for(i=0;i<e.length;i++){
+  for(var i=0;i<e.length;i++){
    e[i].style.display='inline-block';
    if(e[i].tagName=="H1") e[i].style.display='block';
   }
- for(j=0;j<all_languages.length;j++){
+ for(var j=0;j<all_languages.length;j++){
   if(all_languages[j]==newSetLang)continue;
   var e = document.getElementsByClassName(all_languages[j]);
-  for(i=0;i<e.length;i++){
+  for(var i=0;i<e.length;i++){
    e[i].style.display='none';
   }
   }
@@ -1332,7 +1334,7 @@ function offline_note(){
     var text=''; var c_color='';
     if(window.navigator.onLine=='off' || window.navigator.onLine==false ){ text='&check;'; c_color='green';}
     var elems=document.getElementsByClassName('onlineoffline_state');
-    for(i=0;i<elems.length;i++){
+    for(var i=0;i<elems.length;i++){
       elems[i].innerHTML=text;
       elems[i].style.color=c_color;
     }
