@@ -39,8 +39,8 @@
 	"name": "convert phonebook Fritzbox",
 	"description": "convert phonebook files from router Fritzbox .xml to .csv and backwards",
 	"programmingLanguage": "javascript",
-	"dateModified": "2025-06-11",
-	"softwareVersion": "0.32",
+	"dateModified": "2025-06-16",
+	"softwareVersion": "0.33",
 	"inLanguage": ["en", "de"],
     "mainEntityOfPage":"https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html",
 	"url":"https://soerenj.github.io/fritzbox_phonebook_convert_xml_csv/fritzbox_phonebook_convert_csv.html",
@@ -51,8 +51,8 @@
 </script>
 <!--
  /*
- * version: 0.32
- * date: 2025-06-11
+ * version: 0.33
+ * date: 2025-06-16
  *
  * Licence 
  *
@@ -116,6 +116,11 @@ input + label {vertical-align:top; }
   input[type="file"]{ margin: 0.4em; max-width: calc(100% - 3em); } 
   a:hover, details summary:hover{  outline: none;  background: white;  color: darkblue; }
 }
+.phonebook_table{ height:150pt; overflow:scroll; }
+.phonebook_table #phonebook_xml_table__flip_close, .phonebook_table #phonebook_csv_table__flip_close, .phonebook_table #phonebook_csv_table__collaps_right{ display:none; }
+.phonebook_table_fullview #phonebook_xml_table__flip_close, .phonebook_table_fullview #phonebook_csv_table__flip_close, .phonebook_table_fullview #phonebook_csv_table__collaps_right{ display:inline-block; }
+.phonebook_table_fullview{ height:auto; }
+#select_file_csv_div.phonebook_table_fullview_right{ width:auto; }
 </style>
 </head>
 <body>
@@ -162,14 +167,14 @@ input + label {vertical-align:top; }
 </div>
 <p id="show_advanced_view_link_link_close" style="display:none">
 <a href="#" onclick="show_advanced_view('hide');return false" class="maybebutton">
-    <span lang="en" class="en">&blacktriangledown; &nbsp; close text source window 🗙</span>
-    <span lang="de" class="de">&blacktriangledown; &nbsp; schließe Text-Fenster 🗙</span>
+    <span lang="en" class="en">&blacktriangledown; &nbsp; close <!--text source window & table -->🗙</span>
+    <span lang="de" class="de">&blacktriangledown; &nbsp; schließe <!--Text-Fenster und Tabelle -->🗙</span>
 </a>
 </p>
 <p id="show_advanced_view_link_wrapper">
-  <a href="#" onclick="show_advanced_view('show');return false" class="maybebutton">
-    <span lang="en" class="en">&blacktriangleright; &nbsp; show text source window</span>
-    <span lang="de" class="de">&blacktriangleright; &nbsp; Text-Fenster anzeigen </span>
+  <a href="#" onclick="show_advanced_view('show');return false" class="maybebutton" style="text-decoration:none;">
+    <span lang="en" class="en">&blacktriangleright; &nbsp; Text & table</span>
+    <span lang="de" class="de">&blacktriangleright; &nbsp; Text & Tabelle</span>
   </a>
 </p>
 <div id="select_file_and_textarea" class="advanced_view advanced_view__hide">
@@ -200,6 +205,9 @@ input + label {vertical-align:top; }
 </phonebook>
 </phonebooks>
 </textarea>
+<div id="phonebook_xml_table" class="phonebook_table">
+</div>
+<button id="phonebook_xml_table__collaps" onClick="table_full_view__toggleClass('phonebook_xml_table','phonebook_table_fullview');this.style.display='none';" class="maybebutton" title=\"show in full size\">⌄ <span lang="en" class="en">enlarge</span><span lang="de" class="de">vergrößern</span></button>
 </div>
 
 <div id="select_file_csv_div">
@@ -213,6 +221,9 @@ input + label {vertical-align:top; }
 "Person E", "+4911111", "work", "1", "test@example.com", 8, 1
 "Person E", "00494933333", "home", "", "test@example.com"
 </textarea>
+<div id="phonebook_csv_table" class="phonebook_table">
+</div>
+<button id="phonebook_csv_table__collaps" onClick="table_full_view__toggleClass('phonebook_csv_table','phonebook_table_fullview');this.style.display='none';" class="maybebutton">⌄ <span lang="en" class="en">enlarge</span><span lang="de" class="de">vergrößern</span></button>
 <br>
 </div>
 
@@ -304,7 +315,7 @@ input + label {vertical-align:top; }
     <!--<s><span style="color:#999">Going back with this Result data (= from xml to csv): Converting backward currently can't restore the addational information ( <i>type (mobile/home) and Priority(=important Person)</i>).</span></s>--></label></p>
   </fieldset>
   <fieldset ><legend>xml &lArr; csv (=import to fritzbox)</legend>
-  
+  Info:<br>
   <div style="margin-left:30pt;">
   <span lang="en" class="en" style="color:#999">Allowed example csv input:</span>
      <span lang="de" class="de" style="color:#999">Erlaubte Beispiel csv Eingaben:</span>
@@ -330,7 +341,7 @@ input + label {vertical-align:top; }
       <span lang="de" class="de">Anmerkung zu <em>wichtige Personen</em> ("Prio"): Wenn irgendeiner der Einträge einer Person als <em>wichtige Person</em> markiert ist, wird das auch für alle anderen Einträge diese Person übertragen.</span>
      </span> 
      </div>
-     
+     <br/><br/>
     <span lang="en" class="en">How to handle multiple phone numbers per each Person entry:</span>
     <span lang="de" class="de">Wie mit mehreren Telefon-Nummern je Personen-Eintrag umgegangen werden soll:</span>
     <p style="margin: 0pt;"><input type="checkbox" autocomplete="off" id="setting__csv2xml__merge_samename_checkbox" name="setting__csv2xml__merge_samename" value="1" autocomplete="off" checked onChange="if(this.checked==true)setting__csv2xml__merge_samename=1;else setting__csv2xml__merge_samename=0;" />
@@ -354,7 +365,7 @@ input + label {vertical-align:top; }
     </label><br/>
     <span style="color:#999">
      <span lang="en" class="en">Example: on device <em>Fritzbox 7390</em>: That device allow normally maximal 9 numbers per each entry. But it looks like, you can also import entry with more numbers. But, then you will get some problem or error: you can't delete the last phone numbers (>9), but they are still editable. ( Maybe other problems possible.) My advise: Bedder set split to 9 - or -  test yourself how many phone numbers you can add (in Web Interface in Browser fritz.box).</span>
-     <span lang="de" class="de">Beispiel: beim Gerät <em>Fritzbox 7390</em>: Bei diesen Gerät sind normalerweise maximal 9 Telefon-Nummer in jeden Eintrag möglich. Es ist scheinbar trotzdem möglich Telefonbücher mit mehr Telefon-Nummern je Eintrag, zu importieren. Es kommt dann aber zu Problemen oder Fehlern: Die letzten Telefon-Nummern (>9) sind dann nicht mehr löschbar, aber noch bearbeitet-bar. (Möglicherweise andere Probleme möglich.) Meine Empfehlung: Besser bei 9 Telefon-Nummern aufteilen - oder - selber testen wie viele Telefon-Nummern je Eintrag ihre Gerät erlaubt (in der Benutzeroberfläche (= Web-Interface auf fritz.box ) )</span>
+    <span lang="de" class="de">Beispiel: beim Gerät <em>Fritzbox 7390</em>: Bei diesen Gerät sind normalerweise maximal 9 Telefon-Nummer in jeden Eintrag möglich. Es ist scheinbar trotzdem möglich Telefonbücher mit mehr Telefon-Nummern je Eintrag, zu importieren. Es kommt dann aber zu Problemen oder Fehlern: Die letzten Telefon-Nummern (>9) sind dann nicht mehr löschbar, aber noch bearbeitet-bar. (Möglicherweise andere Probleme möglich.) Meine Empfehlung: Besser bei 9 Telefon-Nummern aufteilen - oder - selber testen wie viele Telefon-Nummern je Eintrag ihre Gerät erlaubt (in der Benutzeroberfläche (= Web-Interface auf fritz.box ) )</span>
     </span></div></p>
   </fieldset>
   <br />
@@ -366,7 +377,7 @@ input + label {vertical-align:top; }
   <span style="color:#999;">
     <span lang="en" class="en">That is the shown new Phonebook-Name in the Fritzbox. This is not the filename.</span>
     <span lang="de" class="de">Das ist der neue Telefonbuch-Namen in der Fritzbox selbst. Es ist nicht der Datei-Name.</span>
-  </span>
+  </span><br/><br/>
   <div style="margin-left:0;">
   <span lang="en" class="en">More settings (mostly not needed): </span>
   <span lang="de" class="de">Weitere Einstellungen (meistens nicht nötig): </span>
@@ -514,6 +525,67 @@ function showOnlySupportedChange(v){
 }
 
 
+function create_xml_table(){
+ var t, out, contacts, contact, person, telephony, phone, prio;
+ var text = document.getElementById('phonebook_xml').value;
+ parser = new DOMParser();
+ xmlDoc = parser.parseFromString(text, "text/xml");
+ var contacts = xmlDoc.getElementsByTagName("contact");
+ t = "reload"; if(selectedLanguage=="de")t="aktualisieren";
+ out="<br><span style='text-aling:right'><button onClick='create_xml_table()' id='table_xml_reload_button' style='display:none;' class='maybebutton' title='update table: read textarea again and create table'>🗘 "+t+" <!--update table --></button></span><table class='border_table_grew'>";//↺↻⟲⟳🔁🔃🔄
+ for(var i=0;i<contacts.length;i++)
+ {
+  //check values:
+  if(
+    (undefined==contacts[i].getElementsByTagName("person")[0]) ||
+    (undefined==contacts[i].getElementsByTagName("person")[0].getElementsByTagName("realName")[0]) ||
+    (undefined==contacts[i].getElementsByTagName("person")[0].getElementsByTagName("realName")[0].firstChild) ||
+    (undefined==contacts[i].getElementsByTagName("telephony")[0]) ||
+    (undefined==contacts[i].getElementsByTagName("telephony")[0].getElementsByTagName("number")[0]) ||
+    (undefined==contacts[i].getElementsByTagName("telephony")[0].getElementsByTagName("number")[0].firstChild)
+  ){ continue; }
+  out+="<tr>";
+  person    = contacts[i].getElementsByTagName("person")[0].getElementsByTagName("realName")[0].firstChild.nodeValue;
+  out+="<td style='vertical-align:top'>"+myTrimQuotes(person)+"</td>";
+  out+="<td>";
+  telephony = contacts[i].getElementsByTagName("telephony")[0].getElementsByTagName("number");
+
+  for(var j=0;j<telephony.length;j++){
+   if(null==telephony[j].firstChild || undefined==telephony[j].firstChild.nodeValue || null==telephony[j].firstChild.nodeValue) { continue; }
+   phone = telephony[j].firstChild.nodeValue;
+   phone = myTrimQuotes(phone);
+
+   if(telephony[j].getAttribute('type')!=undefined && telephony[j].getAttribute('type')!=null)
+   out+= telephony[j].getAttribute('type')+": ";
+   out+= phone+"<br/>";
+   if(telephony[0].getAttribute('prio')!=undefined && telephony[0].getAttribute('prio')!=null && prio=='')
+     prio=telephony[0].getAttribute('prio');
+   if(telephony[j].getAttribute('quickdial')!=undefined && telephony[j].getAttribute('quickdial')!=null)
+     out+= "quickdial: "+telephony[j].getAttribute('quickdial')+"</br>";
+   if(telephony[j].getAttribute('vanity')!=undefined && telephony[j].getAttribute('vanity')!=null)
+     out+= "vanity: "+telephony[j].getAttribute('vanity')+"</br>";
+  }
+  if( contacts[i].getElementsByTagName("services").length>0 &&
+      contacts[i].getElementsByTagName("services")[0].getElementsByTagName("email").length>0)
+     out+= "email: "+contacts[i].getElementsByTagName("services")[0].getElementsByTagName("email")[0].firstChild.nodeValue+"</br>";
+  if(prio==1) out += 'Prio: '+telephony[0].getAttribute('prio')+'<br/>';
+  out += "</td></tr>\n";
+ }
+ out+="</table>";
+ t = "shrink"; if(selectedLanguage=="de")t="verkleinern";
+ out+="<br><button id=\"phonebook_xml_table__flip_close\" onClick=\"table_full_view__toggleClass('phonebook_xml_table','phonebook_table_fullview'); document.getElementById('phonebook_xml_table__collaps').style.display='block'\" class=\"maybebutton\" title=\"small view\">⌃ "+t+"</button>";
+ document.getElementById('phonebook_xml_table').innerHTML=out;
+  if( document.getElementById('phonebook_xml_table').scrollHeight!= document.getElementById('phonebook_xml_table').clientHeight )
+    document.getElementById('phonebook_xml_table__collaps').style.display='block';
+  else document.getElementById('phonebook_xml_table__collaps').style.display='none';
+  document.getElementById('phonebook_xml').addEventListener('keydown', table_xml_reload_button__show);   
+}
+document.getElementById('phonebook_xml').addEventListener('keydown', table_xml_reload_button__show);
+function table_xml_reload_button__show(){
+  document.getElementById('table_xml_reload_button').style.display='block';
+  document.getElementById('phonebook_xml').removeEventListener('keydown', table_xml_reload_button__show);
+}
+
 function convert_to_csv(){
  var text = document.getElementById('phonebook_xml').value;
  parser = new DOMParser();
@@ -593,6 +665,7 @@ function convert_to_csv(){
  }
  document.getElementById('phonebook_csv').value = out;
  show_errors(logError);
+ create_csv_table();
  return out;
  //download('csv',out);
 }
@@ -659,6 +732,8 @@ function convert_to_xml(){
       return false;
       }
       ); //sort, in case of merge entrys later
+  
+  
   var lastPersonName = '';
   var lastPersonPrio = '';
   var lastPersonEmail = '';
@@ -760,8 +835,45 @@ function convert_to_xml(){
   out += '</phonebook>\n</phonebooks>';
   document.getElementById('phonebook_xml').value = out;
   show_errors(logError);
+  create_xml_table();
   return out;
   //download('xml',out);
+}
+
+function create_csv_table(){
+  var text = document.getElementById('phonebook_csv').value;
+  var out = '';
+  var t = "reload"; if(selectedLanguage=="de")t="aktualisieren";
+  out="<br><span style='text-align:right'><button onClick='create_csv_table()' id='table_csv_reload_button' style='display:none;' class='maybebutton' title='update table: read textarea again and create table'>🗘 "+t+"<!--update table --></button></span><table class='border_table_grew'>";//↺↻⟲⟳🔁🔃🔄
+  out+='<table class="border_table_grew">';
+  var contacts = CSVToArray(text);
+  for(var row=0;row<contacts.length;row++)
+  { 
+    if(contacts[row]=='')continue;
+    var elements = contacts[row];
+    out+='<tr>';
+    for(var c=0;c<elements.length;c++)
+      out+="<td>"+myTrimQuotes(sanitize_personname(elements[c].substring(0)))+"</td>";
+    out+='</tr>';
+  }
+  out+="</table>";
+  t = "shrink"; if(selectedLanguage=="de")t="verkleinern";
+  out+="<button id=\"phonebook_csv_table__flip_close\" onClick=\"table_full_view__toggleClass('phonebook_csv_table','phonebook_table_fullview'); document.getElementById('phonebook_csv_table__collaps').style.display='block'\" class=\"maybebutton\" style=\"display:inline.block\" title=\"smaller view\">⌃ "+t+"</button> ";
+  t = "enlarge (strech)"; if(selectedLanguage=="de")t="vergrößern (breiter)";
+  out+="<button id=\"phonebook_csv_table__collaps_right\" onClick=\"table_full_view__toggleClass('select_file_csv_div','phonebook_table_fullview_right');\" class=\"maybebutton\" title=\"show in full size (to the right side)\"> 〉 "+t+"</button><br>&nbsp;";
+  document.getElementById('phonebook_csv_table').innerHTML=out;
+  if( document.getElementById('phonebook_csv_table').scrollHeight!= document.getElementById('phonebook_csv_table').clientHeight )
+    document.getElementById('phonebook_csv_table__collaps').style.display='block';
+  else document.getElementById('phonebook_csv_table__collaps').style.display='none';
+  if( document.getElementById('phonebook_csv_table').scrollWidth!= document.getElementById('phonebook_csv_table').clientWidth )
+    document.getElementById('phonebook_csv_table__collaps_right').style.display='block';
+  else document.getElementById('phonebook_csv_table__collaps_right').style.display='';
+  document.getElementById('phonebook_csv').addEventListener('keydown', table_csv_reload_button__show);   
+}
+document.getElementById('phonebook_csv').addEventListener('keydown', table_csv_reload_button__show);
+function table_csv_reload_button__show(){
+  document.getElementById('table_csv_reload_button').style.display='block';
+  document.getElementById('phonebook_csv').removeEventListener('keydown', table_csv_reload_button__show);
 }
 
 function get_filename(filename_with_path) {
@@ -1143,11 +1255,14 @@ function readMultipleFiles(e) {
           }
         //};
       }//end for
+
       if( settings_charset_set!='' &&
           (type_from__forced_to=="csv" || counterFiletypes["csv"]>0))
            reader.readAsText(file,settings_charset_set);
       else reader.readAsText(file);
   }
+  if(counterFiletypes["xml"]>0)  window.setTimeout(' create_xml_table(); ;',100);
+  if(counterFiletypes["csv"]>0)  window.setTimeout(' create_csv_table(); ;',100);
 }
 
 document.getElementById('file-input_drag-n-drop')
@@ -1172,6 +1287,16 @@ function show_advanced_view(state){
    document.getElementById("show_advanced_view_link_wrapper").style.display='none';
    document.getElementById("show_advanced_view_link_link_close").style.display='block';
    document.getElementById("file-input_reset").style.display='none';
+   if( document.getElementById('phonebook_xml_table').scrollHeight!= document.getElementById('phonebook_xml_table').clientHeight )
+        document.getElementById('phonebook_xml_table__collaps').style.display='block';
+   else document.getElementById('phonebook_xml_table__collaps').style.display='none';   
+   if( document.getElementById('phonebook_csv_table').scrollHeight!= document.getElementById('phonebook_csv_table').clientHeight )
+        document.getElementById('phonebook_csv_table__collaps').style.display='block';
+   else document.getElementById('phonebook_csv_table__collaps').style.display='none';
+   if( document.getElementById('phonebook_csv_table').scrollWidth!= document.getElementById('phonebook_csv_table').clientWidth )
+        document.getElementById('phonebook_csv_table__collaps_right').style.display='block';
+   else document.getElementById('phonebook_csv_table__collaps_right').style.display='';
+   
  }
  if(state=='hide'){
    show_advanced_view__state = false;
@@ -1450,5 +1575,18 @@ if (typeof document.querySelector !== "undefined") { //version-info in help
   var jsonld = JSON.parse(document.querySelector('script[type="application/ld+json"]').innerText);
   if (typeof jsonld !== "undefined" && jsonld.softwareVersion !== "undefined" && jsonld.dateModified !== "undefined" ) document.getElementById('version_out').innerText = " v"+jsonld.softwareVersion+" "+jsonld.dateModified;
 }
+
+function table_full_view__toggleClass(elemId,classToggle){
+ var d = document.getElementById(elemId);
+ if(d.classList.contains(classToggle)){
+   d.classList.remove(classToggle);
+   var d2 = document.getElementById('select_file_csv_div');
+   if(classToggle=="phonebook_table_fullview" && d2.classList.contains("phonebook_table_fullview_right"))
+     d2.classList.remove("phonebook_table_fullview_right");
+ }else d.classList.add(classToggle);
+}
+
+create_xml_table();
+create_csv_table();
 </script>
 </body></html>
