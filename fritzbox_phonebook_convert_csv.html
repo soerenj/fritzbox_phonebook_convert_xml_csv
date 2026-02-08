@@ -232,7 +232,11 @@ input + label {vertical-align:top; }
  <button type="button" onclick="convert_to_csv()">convert <span style="font-size:18pt" class="select_file_button_arrow_rl">➡</span><span style="font-size:18pt" class="select_file_button_arrow_ud">⬇</span> xml to csv </button> 
  <button type="button" onclick="convert_to_xml()" class>convert <span style="font-size:18pt" class="select_file_button_arrow_rl">⬅</span><span style="font-size:18pt" class="select_file_button_arrow_ud">⬆</span> csv to xml</button>
  <br>
- <button type="button" title="Download one file" onclick="download_one_file_ask()" >Download</button> 
+ <fieldset style="margin-bottom:5pt;border-radius:5pt;"><legend>Download</legend>
+   <!--<button type="button" title="Download one file" onclick="download_one_file_ask()" >Download</button>-->
+   <button style="display:inline" type="button" title="Download one file" onclick="prepare_and_download(document.getElementById('phonebook_xml').value,'','xml');" >xml</button>
+   <button style="display:inline" type="button" title="Download one file" onclick="prepare_and_download(document.getElementById('phonebook_csv').value,'','csv');" >csv</button>
+ </fieldset>
  <button type="button" title="reset to default" onclick="reset_to_default()" > 🗙 Reset to Test-Values</button>  
 </div>
 
