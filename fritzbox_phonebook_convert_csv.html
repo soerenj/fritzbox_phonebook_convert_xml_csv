@@ -952,6 +952,9 @@ function myTrimQuotes(aa){
   aa = aa.replace(/^"+|"+$/g,'');   //trim "
   aa = aa.replace(/^'+|'+$/g,"");   //trim '
   aa = aa.replace(/^\s+|\s+$/g,''); //trim spaces
+  aa = aa.replace(/\&quot;/g,'');   //trim "
+  aa = aa.replace(/^\s+|\s+$/g,''); //trim spaces
+  aa = aa.replace(/^'+|'+$/g,"");   //trim '
   return aa;
 }
 
